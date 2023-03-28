@@ -91,6 +91,7 @@ MonoBehaviour:
   paramATK: 10
   paramATK_RANGE: 1
   paramATK_SPD: 2
+  paramMOVE_SPD: 3
   paramDEF: 5
   paramPOINTS: 10
 --- !u!114 &8463529049182249692
@@ -5022,7 +5023,7 @@ GameObject:
   - component: {fileID: 2805832514232851424}
   - component: {fileID: 1227907704207319603}
   - component: {fileID: 4243655404473727676}
-  - component: {fileID: 6483758455988658125}
+  - component: {fileID: 6864164251103889469}
   m_Layer: 3
   m_Name: OverheadUI
   m_TagString: Untagged
@@ -5112,7 +5113,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6483758455988658125
+--- !u!114 &6864164251103889469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5121,11 +5122,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5932101214812373305}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 033123690176db34fbe6898542e94c5c, type: 3}
+  m_Script: {fileID: 11500000, guid: d860a6e08e5e64343a60e424316993d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 288891212625141559}
-  player: {fileID: 0}
   healthBar: {fileID: 6821819099270899737}
 --- !u!1 &6125117264385430135
 GameObject:
