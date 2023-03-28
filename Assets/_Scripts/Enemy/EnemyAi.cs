@@ -26,7 +26,7 @@ public class EnemyAi : MonoBehaviour {
     private void Update() {
 
         //Check for attack range.
-        playerInAttackRange = Physics.CheckSphere(transform.position, enemyEntity.GetAttackRange(), LayerMask.GetMask("Player"));
+        playerInAttackRange = Physics.CheckSphere(transform.position, enemyEntity.GetParamATK_RNG(), LayerMask.GetMask("Player"));
         //Debug.Log("Player in range: " + playerInAttackRange);
 
         enemyAnimator.PlayAttack(hasAttacked);
@@ -57,7 +57,12 @@ public class EnemyAi : MonoBehaviour {
 
             //Debug.Log("Enemy has attacked.");
             hasAttacked = true;
-            Invoke(nameof(CooldownAttack), enemyEntity.GetAttackDelay());
+
+            //Debug.Log("Player expected to take a maximum of " + enemyEntity.GetParamATK() + " damage.");
+            Player.INSTANCE.TakeDamage(enemyEntity.GetParamATK());
+
+            //Initiate an attack with attack cooldown based on enemy attack speed.
+            Invoke(nameof(CooldownAttack), enemyEntity.GetParamATK_SPD());
 
         }
 
@@ -71,7 +76,7 @@ public class EnemyAi : MonoBehaviour {
     public void CheckHealth() {
 
         //If enemy health is below 0, kill the enemy.
-        if(enemyEntity.GetHealth() <= 0) {
+        if(enemyEntity.GetParamHP() <= 0) {
 
             KillEnemy();
             Destroy(GetComponent<BoxCollider>());
@@ -87,7 +92,7 @@ public class EnemyAi : MonoBehaviour {
         enemyAnimator.PlayDead();
         agent.isStopped = true;
         Debug.Log("Enemy Killed!");
-        ScoreTracker.INSTANCE.AddScore(enemyEntity.GetEnemyPoints());
+        ScoreTracker.INSTANCE.AddScore(enemyEntity.GetParamPOINTS());
 
     }
 
@@ -102,6 +107,10 @@ public class EnemyAi : MonoBehaviour {
 
     public bool IsDead() {
         return isDead;
+    }
+
+    public NavMeshAgent GetAgent() {
+        return agent;
     }
 
 }

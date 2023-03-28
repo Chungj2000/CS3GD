@@ -1531,6 +1531,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3776420966052446259, guid: 0867755c7a1d1534da1c47283f3d431c,
+        type: 3}
+      propertyPath: paramATK
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3776420966052446259, guid: 0867755c7a1d1534da1c47283f3d431c,
+        type: 3}
+      propertyPath: paramMOVE_SPD
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8112687821077699866, guid: 0867755c7a1d1534da1c47283f3d431c,
         type: 3}
       propertyPath: m_Name

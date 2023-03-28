@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    [SerializeField]
-    private float MOVEMENT_SPEED = 7f;
-    [SerializeField]
-    private float ROTATION_SPEED = 10f;
-
+    [SerializeField] private float MOVEMENT_SPEED;
+    [SerializeField] private float ROTATION_SPEED = 10f;
     private bool isWalking;
+
+    private void Start() {
+        MOVEMENT_SPEED = Player.INSTANCE.GetParamMOVE_SPD();
+    }
 
     // Update is called once per frame
     private void Update() {
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour {
 
         //Transform player character independant of framerate with movement modifier.
         transform.position += playerMoveDirection * Time.deltaTime * MOVEMENT_SPEED;
-        //Lerp function used for smooth rotatin.
+        //Lerp function used for smooth rotation.
         transform.forward = Vector3.Slerp(transform.forward, playerMoveDirection, Time.deltaTime * ROTATION_SPEED);
         
         RotatePlayerTowardsCursor();
