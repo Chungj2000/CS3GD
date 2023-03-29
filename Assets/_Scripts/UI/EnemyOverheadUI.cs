@@ -4,24 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyOverheadUI : MonoBehaviour
-{
+public class EnemyOverheadUI : AbstractOverheadUI {
 
     [SerializeField] private Enemy enemy = null;
-    [SerializeField] private Image healthBar;
 
-    private void Start() {
+    protected override void Start() {
         enemy.OnDamaged += Enemy_OnDamaged;
-        UpdateHealthBar();
+        //Initialise base function settings when overriding function.
+        base.Start();
     }
 
-    private void UpdateHealthBar() {
+    protected override void UpdateHealthBar() {
         healthBar.fillAmount = enemy.GetCurrentHP();
-    }
-
-    private void LateUpdate() {
-        //Make UI always face the camera with a 90 degree x-axis.
-        transform.rotation = Quaternion.Euler(90,0,0);
     }
 
     private void Enemy_OnDamaged(object sender, EventArgs e) {

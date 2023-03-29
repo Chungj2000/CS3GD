@@ -164,11 +164,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d110d191e563392488f4e089e5dd38e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paramHP: 100
+  paramMAX_HP: 100
   paramATK: 10
   paramATK_SPD: 1
   paramATK_RANGE: 15
-  paramMOVE_SPD: 7
+  paramMOVE_SPD: 4
   paramDEF: 5
 --- !u!114 &8112687821077699868
 MonoBehaviour:
@@ -323,8 +323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 033123690176db34fbe6898542e94c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
-  player: {fileID: 0}
   healthBar: {fileID: 1882082053185077681}
 --- !u!1 &9162141303091518729
 GameObject:

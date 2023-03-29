@@ -67,7 +67,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -87,10 +87,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72e7a9c6ac1ae884b81e4a62138d6d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paramHP: 100
+  paramMAX_HP: 100
   paramATK: 10
-  paramATK_RANGE: 1
   paramATK_SPD: 2
+  paramATK_RANGE: 1
   paramMOVE_SPD: 3
   paramDEF: 5
   paramPOINTS: 10
@@ -5125,8 +5125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d860a6e08e5e64343a60e424316993d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 288891212625141559}
   healthBar: {fileID: 6821819099270899737}
+  enemy: {fileID: 288891212625141559}
 --- !u!1 &6125117264385430135
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ public class EnemyAi : MonoBehaviour {
     private void Update() {
 
         //Check for attack range.
-        playerInAttackRange = Physics.CheckSphere(transform.position, enemyEntity.GetParamATK_RNG(), LayerMask.GetMask("Player"));
+        playerInAttackRange = Physics.CheckSphere(transform.position, enemyEntity.GetParamATK_RANGE(), LayerMask.GetMask("Player"));
         //Debug.Log("Player in range: " + playerInAttackRange);
 
         enemyAnimator.PlayAttack(hasAttacked);
@@ -93,6 +93,10 @@ public class EnemyAi : MonoBehaviour {
         agent.isStopped = true;
         Debug.Log("Enemy Killed!");
         ScoreTracker.INSTANCE.AddScore(enemyEntity.GetParamPOINTS());
+
+        //Rescale the collider so it is not treated as an obstacle.
+        agent.radius = 0f;
+        //Unfortunately can still collide with enemies but to a lesser extent.
 
     }
 

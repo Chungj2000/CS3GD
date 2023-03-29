@@ -9,16 +9,19 @@ public class WaveSystem : MonoBehaviour {
     [SerializeField] private int waveDelay = 5;
     [SerializeField] private Wave wave;
     
-    private bool activeWave, nextWaveReady, waveDelayNotificationOn;
+    private bool activeWave, nextWaveReady, waveDelayNotificationOn, isCouroutineStarted;
     private int waveCounter;
     private int enemiesInWave;
     private int notificationDuration = 3;
 
     private void Awake() {
+
         waveCounter = 1;
         enemiesInWave = 3;
+
         activeWave = false;
         nextWaveReady = false;
+        isCouroutineStarted = false;
 
         if(INSTANCE == null) {
             INSTANCE = this;
@@ -47,15 +50,21 @@ public class WaveSystem : MonoBehaviour {
 
             //Debug.Log("Wave over.");
 
-            StartCoroutine(WaveIntermission());
+            //Ensure couroutine is only ran once.
+            if(!isCouroutineStarted) {
+                StartCoroutine(WaveIntermission());
+            }
 
+            //Prepare logic for the next wave once wave intermission elapses.
             if(nextWaveReady) {
 
                 waveCounter += 1;
                 StartCoroutine(NotificationHandler.INSTANCE.SetNotification("WAVE " + waveCounter, notificationDuration));
                 //Debug.Log("Current wave: " + waveCounter);
+                
                 activeWave = false;
                 nextWaveReady = false;
+                isCouroutineStarted = false;
 
             }
         }
@@ -63,14 +72,19 @@ public class WaveSystem : MonoBehaviour {
     }
 
     private void NewWave() {
+
+        //Spawned enemies is scaled based on enemies in a wave by the current wave.
         for(int i = 0; i < enemiesInWave * waveCounter; i++) {
             wave.SpawnEnemy();
         }
+
+        //Update ScreenSpace UI after all enemies have been spawned.
         EnemiesAliveTracker.INSTANCE.UpdateEnemyCount(GetEnemyCount());
     }
 
     IEnumerator WaveIntermission() {
-        //Debug.Log("Next Wave In: " + waveDelay);
+        //Debug.Log("Next wave in " + waveDelay + " seconds.");
+        isCouroutineStarted = true;
         yield return new WaitForSeconds(waveDelay);
         nextWaveReady = true;
     }
@@ -91,37 +105,44 @@ public class WaveSystem : MonoBehaviour {
         }
 
         public void Update() {
+
             RemoveDeadEnemies();
+
             if(GetEnemyCount() <= 0) {
                 waveOver = true;
                 //Debug.Log("Wave now over.");
             }
+
         }
 
         public void SpawnEnemy() {
 
             waveOver = false;
 
+            //Generate a random valid position on the map.
             Vector3 randomSpawnLocation = new Vector3(
                 UnityEngine.Random.Range(-spawnRegion.x, spawnRegion.x),
                 0f,
                 UnityEngine.Random.Range(-spawnRegion.y, spawnRegion.y)
             );
 
+            //Create the enemy at the random position and add it to the list of enemies.
             enemyEntity = Instantiate(enemyPrefab, randomSpawnLocation, Quaternion.identity);
             enemies.Add(enemyEntity);
 
-            Debug.Log("Enemy spawned count now at: " + GetEnemyCount());
+            Debug.Log("Enemy spawn count now at: " + GetEnemyCount());
 
         }
         
         public void RemoveDeadEnemies() {
 
+            //Cycle through the list of enemies, and remove any that are 'Dead'
             foreach(GameObject enemy in enemies.ToArray()) {
 
                 if(enemy.GetComponent<EnemyAi>().IsDead()) {
 
                     enemies.Remove(enemy);
+                    //Update ScreenSpace UI after an enemy has been removed.
                     EnemiesAliveTracker.INSTANCE.UpdateEnemyCount(GetEnemyCount());
                     //Debug.Log("Enemy count reduced to: " + GetEnemyCount());
 

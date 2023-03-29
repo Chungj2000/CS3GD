@@ -63,8 +63,8 @@ public class SimpleShoot : MonoBehaviour
 
         // Create a bullet and add force on it in direction of the barrel
         GameObject bulletTransform = Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation);//.GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
-        Vector3 shootDirection = new Vector3(InputManager.INSTANCE.GetCursorPositionFromPlayer().x, 0f, InputManager.INSTANCE.GetCursorPositionFromPlayer().y).normalized;
-        bulletTransform.GetComponent<ProjectileHandler>().Setup(shootDirection);
+        Vector3 shootDirection = new Vector3(InputManager.INSTANCE.GetCursorPositionFromPlayer().x, bulletTransform.transform.position.y, InputManager.INSTANCE.GetCursorPositionFromPlayer().y).normalized;
+        bulletTransform.GetComponent<ProjectileHandler>().Setup(shootDirection, Player.INSTANCE.GetParamATK_RANGE());
 
     }
 

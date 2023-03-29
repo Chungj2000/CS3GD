@@ -289,7 +289,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94328334}
-  m_LocalRotation: {x: 0.6257274, y: -0.0000000051111506, z: 0.0000000041000003, w: 0.7800418}
+  m_LocalRotation: {x: 0.6257274, y: -0.0000000051111715, z: 0.0000000041000345, w: 0.7800418}
   m_LocalPosition: {x: 0, y: 9, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -530,7 +530,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.6257274, y: -0.0000000051111506, z: 0.0000000041000003, w: 0.7800418}
+  m_LocalRotation: {x: 0.6257274, y: -0.0000000051111715, z: 0.0000000041000345, w: 0.7800418}
   m_LocalPosition: {x: 0, y: 9, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1534,12 +1534,22 @@ PrefabInstance:
     - target: {fileID: 3776420966052446259, guid: 0867755c7a1d1534da1c47283f3d431c,
         type: 3}
       propertyPath: paramATK
-      value: 30
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 3776420966052446259, guid: 0867755c7a1d1534da1c47283f3d431c,
+        type: 3}
+      propertyPath: paramMAX_HP
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3776420966052446259, guid: 0867755c7a1d1534da1c47283f3d431c,
         type: 3}
       propertyPath: paramMOVE_SPD
-      value: 3
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3776420966052446259, guid: 0867755c7a1d1534da1c47283f3d431c,
+        type: 3}
+      propertyPath: paramATK_RANGE
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8112687821077699866, guid: 0867755c7a1d1534da1c47283f3d431c,
         type: 3}
