@@ -20,7 +20,7 @@ public class Enemy : CharacterEntity {
         
     }
 
-    public override void TakeDamage(int playerParamATK) {
+    public override void TakeDamage(float playerParamATK) {
 
         paramHP -= CalculateDamage(playerParamATK);
 

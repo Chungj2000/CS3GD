@@ -13,8 +13,11 @@ public class WaveSystem : MonoBehaviour {
     private int waveCounter;
     private int enemiesInWave;
     private int notificationDuration = 3;
+    private static string currentWaveNotification, waveIntermissionNotification;
 
     private void Awake() {
+
+        waveIntermissionNotification = "NEXT WAVE IN " + waveDelay + " SECONDS";
 
         waveCounter = 1;
         enemiesInWave = 3;
@@ -41,7 +44,7 @@ public class WaveSystem : MonoBehaviour {
         }
 
         if(!activeWave) {
-            Debug.Log("New wave active.");
+            //Debug.Log("New wave active.");
             activeWave = true;
             NewWave();
         }
@@ -59,7 +62,10 @@ public class WaveSystem : MonoBehaviour {
             if(nextWaveReady) {
 
                 waveCounter += 1;
-                StartCoroutine(NotificationHandler.INSTANCE.SetNotification("WAVE " + waveCounter, notificationDuration));
+                currentWaveNotification = "WAVE " + waveCounter;
+
+                //Notify current wave.
+                StartCoroutine(NotificationHandler.INSTANCE.SetTimedWaveNotification(currentWaveNotification, notificationDuration));
                 //Debug.Log("Current wave: " + waveCounter);
                 
                 activeWave = false;
@@ -84,7 +90,13 @@ public class WaveSystem : MonoBehaviour {
 
     IEnumerator WaveIntermission() {
         //Debug.Log("Next wave in " + waveDelay + " seconds.");
+
+        //This couroutine is currently running, therefore disable other calls to this function.
         isCouroutineStarted = true;
+
+        //Notify when next wave will occur.
+        StartCoroutine(NotificationHandler.INSTANCE.SetTimedWaveNotification(waveIntermissionNotification, notificationDuration));
+
         yield return new WaitForSeconds(waveDelay);
         nextWaveReady = true;
     }
@@ -130,7 +142,7 @@ public class WaveSystem : MonoBehaviour {
             enemyEntity = Instantiate(enemyPrefab, randomSpawnLocation, Quaternion.identity);
             enemies.Add(enemyEntity);
 
-            Debug.Log("Enemy spawn count now at: " + GetEnemyCount());
+            //Debug.Log("Enemy spawn count now at: " + GetEnemyCount());
 
         }
         

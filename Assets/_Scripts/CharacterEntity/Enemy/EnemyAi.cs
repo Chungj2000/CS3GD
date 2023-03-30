@@ -25,6 +25,16 @@ public class EnemyAi : MonoBehaviour {
 
     private void Update() {
 
+        //Dead enemies cannot perform actions;
+        if(isDead) {
+            return;
+        }
+
+        //Player is dead, therefore disable actions.
+        if(Player.INSTANCE.IsDead()) {
+            return;
+        }
+
         //Check for attack range.
         playerInAttackRange = Physics.CheckSphere(transform.position, enemyEntity.GetParamATK_RANGE(), LayerMask.GetMask("Player"));
         //Debug.Log("Player in range: " + playerInAttackRange);
@@ -91,11 +101,11 @@ public class EnemyAi : MonoBehaviour {
         isDead = true;
         enemyAnimator.PlayDead();
         agent.isStopped = true;
-        Debug.Log("Enemy Killed!");
+        //Debug.Log("Enemy Killed!");
         ScoreTracker.INSTANCE.AddScore(enemyEntity.GetParamPOINTS());
 
         //Rescale the collider so it is not treated as an obstacle.
-        agent.radius = 0f;
+        //agent.radius = 0f;
         //Unfortunately can still collide with enemies but to a lesser extent.
 
     }
@@ -105,7 +115,7 @@ public class EnemyAi : MonoBehaviour {
 
         yield return new WaitForSeconds(15);
         Destroy(gameObject);
-        Debug.Log("Corpse Removed!");
+        //Debug.Log("Corpse Removed!");
 
     }
 

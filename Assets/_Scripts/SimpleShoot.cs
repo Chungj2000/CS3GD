@@ -37,7 +37,7 @@ public class SimpleShoot : MonoBehaviour
         //Refactored to use new InputSystem.
         if (InputManager.INSTANCE.IsAttacking())
         {
-            Debug.Log("Attack triggered.");
+            //Debug.Log("Attack triggered.");
             //Calls animation on the gun that has the relevant animation events that will fire
             gunAnimator.SetTrigger("Fire");
         }

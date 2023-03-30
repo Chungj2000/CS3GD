@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 3}
   m_MinSize: {x: 875, y: 471}
   m_MaxSize: {x: 10000, y: 10000}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 58
+  controlID: 95
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 59
+  controlID: 96
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 82
+  controlID: 24
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 83
+  controlID: 59
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -574,7 +574,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 0.018919408, y: 0.7461144, z: 0.12962425}
     speed: 2
-    m_Value: {x: 0.018919408, y: 0.7461144, z: 0.12962425}
+    m_Value: {x: -0.13723254, y: 0.18907642, z: -0.8781347}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -623,11 +623,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.44870386, y: -0.0026854628, z: 0.0013493225, w: 0.8936902}
     speed: 2
-    m_Value: {x: 0.44869798, y: -0.0026854277, z: 0.0013493048, w: 0.8936785}
+    m_Value: {x: 0.08244772, y: -0.8892383, z: 0.4135529, w: 0.1772898}
   m_Size:
-    m_Target: 7.4397554
+    m_Target: 5.4890375
     speed: 2
-    m_Value: 7.4397554
+    m_Value: 5.050954
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -645,7 +645,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: 0.082448654, y: -0.8892484, z: 0.4135576, w: 0.17729181}
+  m_LastSceneViewRotation: {x: 0.44870386, y: -0.0026854628, z: 0.0013493225, w: 0.8936902}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -1071,23 +1071,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 2a0e0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 16fbffff
+      m_ExpandedIDs: 14fbffff16fbffff0c6d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Canvas
+        m_OriginalName: Canvas
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 27834
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 10}
       m_SearchString: 
@@ -1139,21 +1139,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Scripts/Player
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/_Scripts/Player
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Unity Github Repositories\CS3GD
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 60}
-    m_SelectedIDs: 2e760000
-    m_LastClickedID: 30254
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: f4750000
+    m_LastClickedID: 30196
     m_ExpandedIDs: 00000000f4750000f6750000f8750000fa750000fc75000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1207,9 +1207,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 2a0e0000
-    m_LastClickedInstanceID: 3626
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 326d0000
+    m_LastClickedInstanceID: 27954
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000c86f0000747300007c730000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1298,7 +1298,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 62158
+  m_LastSelectedObjectID: 45746
 --- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52

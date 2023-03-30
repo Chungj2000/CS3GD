@@ -5,25 +5,52 @@ using UnityEngine;
 
 public abstract class CharacterEntity : MonoBehaviour {
 
-    [SerializeField] protected int paramMAX_HP;
-    protected int paramHP;
-    [SerializeField] protected int paramATK;
+    [SerializeField] protected float paramMAX_HP;
+    protected float paramHP;
+    [SerializeField] protected float paramATK;
     [SerializeField] protected float paramATK_SPD;
     [SerializeField] protected float paramATK_RANGE;
     //Please note that paramMOVE_SPD and NavMeshAgent speed property for Enemy entities.
     [SerializeField] protected float paramMOVE_SPD;
-    [SerializeField] protected int paramDEF;
+    [SerializeField] protected float paramDEF;
 
     protected virtual void Awake() {
         //Ensure entity is set to full health when spawned.
         paramHP = paramMAX_HP;
     }
 
-    public abstract void TakeDamage(int paramATK);
+    public abstract void TakeDamage(float paramATK);
 
-    protected int CalculateDamage(int paramATK_Value) {
+    public void ModifyParameters(Dictionary<string, float> modifyingParameters) {
 
-        int damage = 1;
+        paramMAX_HP += modifyingParameters["paramMAX_HP"];
+        Debug.Log("Current MAX HP: " + paramMAX_HP);
+
+        paramHP += modifyingParameters["paramHP"];
+        Debug.Log("Current HP: " + paramHP);
+
+        paramATK += modifyingParameters["paramATK"];
+        Debug.Log("Current ATK: " + paramATK);
+
+        paramATK_SPD += modifyingParameters["paramATK_SPD"];
+        Debug.Log("Current ATK SPD: " + paramATK_SPD);
+
+        paramATK_RANGE += modifyingParameters["paramATK_RANGE"];
+        Debug.Log("Current ATK RANGE: " + paramATK_RANGE);
+
+        paramMOVE_SPD += modifyingParameters["paramMOVE_SPD"];
+        Debug.Log("Current MOVE SPD: " + paramMOVE_SPD);
+
+        paramDEF += modifyingParameters["paramDEF"];
+        Debug.Log("Current DEF: " + paramDEF);
+        
+        Debug.Log("Parameters modified.");
+
+    }
+
+    protected float CalculateDamage(float paramATK_Value) {
+
+        float damage = 1;
 
         //Damage calculated by ATK - DEF.
         if(paramATK_Value - paramDEF > 0) {
@@ -38,11 +65,11 @@ public abstract class CharacterEntity : MonoBehaviour {
 
     //Parameter Getters.
 
-    public int GetParamHP() {
+    public float GetParamHP() {
         return paramHP;
     }
 
-    public int GetParamMAX_HP() {
+    public float GetParamMAX_HP() {
         return paramMAX_HP;
     }
 
@@ -51,7 +78,7 @@ public abstract class CharacterEntity : MonoBehaviour {
         return (float) paramHP / paramMAX_HP;
     }
 
-    public int GetParamATK() {
+    public float GetParamATK() {
         return paramATK;
     }
 
@@ -67,7 +94,7 @@ public abstract class CharacterEntity : MonoBehaviour {
         return paramMOVE_SPD;
     }
 
-    public int GetParamDEF() {
+    public float GetParamDEF() {
         return paramDEF;
     }
 

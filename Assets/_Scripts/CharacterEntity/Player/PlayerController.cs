@@ -8,12 +8,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float ROTATION_SPEED = 10f;
     private bool isWalking;
 
-    private void Start() {
-        MOVEMENT_SPEED = Player.INSTANCE.GetParamMOVE_SPD();
-    }
-
-    // Update is called once per frame
     private void Update() {
+
+        MOVEMENT_SPEED = Player.INSTANCE.GetParamMOVE_SPD();
 
         Vector2 playerMovementVector = InputManager.INSTANCE.GetMovementVector();
         //Debug.Log(playerMovementVector);

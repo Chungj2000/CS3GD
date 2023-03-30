@@ -8,6 +8,7 @@ public class EnemyAnimator : MonoBehaviour {
     private Animator enemyAnimator;
     private NavMeshAgent agent;
 
+    private const string isIdle = "IsIdle";
     private const string isWalking = "IsWalking";
     private const string isAttacking = "IsAttacking";
     private const string isDead = "Dead";
@@ -17,8 +18,13 @@ public class EnemyAnimator : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
     }
 
-    private void Update()
-    {
+    private void Update() {
+
+        if(Player.INSTANCE.IsDead()) {
+            enemyAnimator.SetBool(isIdle, Player.INSTANCE.IsDead());
+            return;
+        }
+
         enemyAnimator.SetBool(isWalking, agent.velocity.magnitude > 0.01f);
     }
 

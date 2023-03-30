@@ -44,6 +44,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""23d27f7b-2a55-4057-bea3-3fe195dfdb92"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -167,6 +176,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c82b61cf-8657-42eb-af7f-5f55d5368ce9"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -177,6 +197,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_DefaultPlayer = asset.FindActionMap("Default  Player", throwIfNotFound: true);
         m_DefaultPlayer_Move = m_DefaultPlayer.FindAction("Move", throwIfNotFound: true);
         m_DefaultPlayer_Attack = m_DefaultPlayer.FindAction("Attack", throwIfNotFound: true);
+        m_DefaultPlayer_Interact = m_DefaultPlayer.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -238,12 +259,14 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private IDefaultPlayerActions m_DefaultPlayerActionsCallbackInterface;
     private readonly InputAction m_DefaultPlayer_Move;
     private readonly InputAction m_DefaultPlayer_Attack;
+    private readonly InputAction m_DefaultPlayer_Interact;
     public struct DefaultPlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public DefaultPlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_DefaultPlayer_Move;
         public InputAction @Attack => m_Wrapper.m_DefaultPlayer_Attack;
+        public InputAction @Interact => m_Wrapper.m_DefaultPlayer_Interact;
         public InputActionMap Get() { return m_Wrapper.m_DefaultPlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -259,6 +282,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Attack.started -= m_Wrapper.m_DefaultPlayerActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_DefaultPlayerActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_DefaultPlayerActionsCallbackInterface.OnAttack;
+                @Interact.started -= m_Wrapper.m_DefaultPlayerActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_DefaultPlayerActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_DefaultPlayerActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_DefaultPlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -269,6 +295,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -277,5 +306,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

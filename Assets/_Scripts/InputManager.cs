@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour {
     private void Awake() {
         if(INSTANCE == null) {
             INSTANCE = this;
-            Debug.Log("InputManager instance created.");
+            //Debug.Log("InputManager instance created.");
         } else {
             Debug.LogError("More than one InputManager instance created.");
         }
@@ -56,6 +56,14 @@ public class InputManager : MonoBehaviour {
 
     public bool IsAttacking() {
         if (playerInputActions.DefaultPlayer.Attack.triggered) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public bool IsInteracting() {
+        if (playerInputActions.DefaultPlayer.Interact.triggered) {
             return true;
         } else {
             return false;
