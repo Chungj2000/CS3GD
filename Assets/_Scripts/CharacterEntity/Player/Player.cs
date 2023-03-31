@@ -64,6 +64,7 @@ public class Player : CharacterEntity {
 
         //Update Player parameters.
         ModifyParameters(item.GetParameters());
+        MultiplierParameters(item.GetParameters());
 
         //Modify HealthBar visual if there is a change in HP.
         if(item.GetParameters()["paramMAX_HP"] != 0 || item.GetParameters()["paramHP"] != 0) {

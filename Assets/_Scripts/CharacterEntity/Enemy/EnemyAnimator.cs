@@ -36,5 +36,4 @@ public class EnemyAnimator : MonoBehaviour {
         enemyAnimator.SetBool(isAttacking, hasAttacked);
     }
 
-
 }

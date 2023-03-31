@@ -48,6 +48,33 @@ public abstract class CharacterEntity : MonoBehaviour {
 
     }
 
+    public void MultiplierParameters(Dictionary<string, float> modifyingParameters) {
+
+        paramMAX_HP = paramMAX_HP * modifyingParameters["multipltierMAX_HP"];
+        Debug.Log("Current MAX HP: " + paramMAX_HP);
+
+        paramHP = paramHP * modifyingParameters["multipltierHP"];
+        Debug.Log("Current HP: " + paramHP);
+
+        paramATK = paramATK * modifyingParameters["multipltierATK"];
+        Debug.Log("Current ATK: " + paramATK);
+
+        paramATK_SPD = paramATK_SPD * modifyingParameters["multipltierATK_SPD"];
+        Debug.Log("Current ATK SPD: " + paramATK_SPD);
+
+        paramATK_RANGE = paramATK_RANGE * modifyingParameters["multipltierATK_RANGE"];
+        Debug.Log("Current ATK RANGE: " + paramATK_RANGE);
+
+        paramMOVE_SPD = paramMOVE_SPD * modifyingParameters["multipltierMOVE_SPD"];
+        Debug.Log("Current MOVE SPD: " + paramMOVE_SPD);
+
+        paramDEF = paramDEF * modifyingParameters["multipltierDEF"];
+        Debug.Log("Current DEF: " + paramDEF);
+        
+        Debug.Log("Parameters multiplied.");
+
+    }
+
     protected float CalculateDamage(float paramATK_Value) {
 
         float damage = 1;

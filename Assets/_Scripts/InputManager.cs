@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour {
     private Vector3 cursorPositionFromPlayer;
 
     private void Awake() {
+
         if(INSTANCE == null) {
             INSTANCE = this;
             //Debug.Log("InputManager instance created.");
@@ -21,6 +22,7 @@ public class InputManager : MonoBehaviour {
         
         playerInputActions = new PlayerInputActions();
         playerInputActions.DefaultPlayer.Enable();
+
     }
 
     private void Update() {

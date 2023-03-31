@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemHandler : MonoBehaviour {
 
     [SerializeField] private ParameterValues parameterValues;
+    [SerializeField] private float rotationSpeed = 100f;
     private Dictionary<string, float> parameters;
     private int interactDistance = 1;
 
@@ -18,6 +19,12 @@ public class ItemHandler : MonoBehaviour {
         //Determine whether the player is within an interaction distance.
         ItemInteraction();
 
+        AnimatePrefab();
+
+    }
+
+    private void AnimatePrefab() {
+        transform.eulerAngles += new Vector3(0, 1, 0) * rotationSpeed * Time.deltaTime;
     }
 
     private void ItemInteraction() {
@@ -39,7 +46,6 @@ public class ItemHandler : MonoBehaviour {
 
     }
 
-    
     private bool PlayerWithinInteractDistance() {
 
         //Player is dead, therefore doesn't exist.
@@ -57,14 +63,13 @@ public class ItemHandler : MonoBehaviour {
 
     }
 
-    /** Multiply all parameters by x amount.
     public Dictionary<string, float> GetMultipliedParameters(float multiplier) {
         foreach(string parameter in parameters.Keys) {
             parameters[parameter] = parameters[parameter] * multiplier;
         }
 
         return parameters;
-    } **/
+    }
 
     public Dictionary<string, float> GetParameters() => parameterValues.GetParameters();
 
@@ -79,11 +84,20 @@ public class ItemHandler : MonoBehaviour {
         [SerializeField] private float paramATK_RANGE = 0;
         [SerializeField] private float paramMOVE_SPD = 0;
         [SerializeField] private float paramDEF = 0;
-        //[Header("=Parameter Multipliers")]
+
+        [Header("Parameter Multipliers")]
+        [SerializeField] private float multipltierMAX_HP = 1;
+        [SerializeField] private float multipltierHP = 1;
+        [SerializeField] private float multipltierATK = 1;
+        [SerializeField] private float multipltierATK_SPD = 1;
+        [SerializeField] private float multipltierATK_RANGE = 1;
+        [SerializeField] private float multipltierMOVE_SPD = 1;
+        [SerializeField] private float multipltierDEF = 1;
 
         private Dictionary<string, float> parameters = new Dictionary<string, float>();
 
         public void Awake() {
+
             parameters.Add("paramMAX_HP", paramMAX_HP);
             parameters.Add("paramHP", paramHP);
             parameters.Add("paramATK", paramATK);
@@ -91,7 +105,17 @@ public class ItemHandler : MonoBehaviour {
             parameters.Add("paramATK_RANGE", paramATK_RANGE);
             parameters.Add("paramMOVE_SPD", paramMOVE_SPD);
             parameters.Add("paramDEF", paramDEF);
+
+            parameters.Add("multipltierMAX_HP", multipltierMAX_HP);
+            parameters.Add("multipltierHP", multipltierHP);
+            parameters.Add("multipltierATK", multipltierATK);
+            parameters.Add("multipltierATK_SPD", multipltierATK_SPD);
+            parameters.Add("multipltierATK_RANGE", multipltierATK_RANGE);
+            parameters.Add("multipltierMOVE_SPD", multipltierMOVE_SPD);
+            parameters.Add("multipltierDEF", multipltierDEF);
+
             Debug.Log("Item initiated.");
+
         }
 
         public int Size() {

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour {
     
-    [SerializeField]
-    private PlayerController player;
-    private Animator animator;
+    [SerializeField] private PlayerController player;
+    private Animator playerAnimator;
 
     private void Awake() {
-        animator = GetComponent<Animator>();
+        playerAnimator = GetComponent<Animator>();
         
     }
 
     private void Update() {
-        animator.SetBool("IsWalking", player.IsWalking());
+        playerAnimator.SetBool("IsWalking", player.IsWalking());
+        playerAnimator.SetBool("IsDead", Player.INSTANCE.IsDead());
     }
 
 }
