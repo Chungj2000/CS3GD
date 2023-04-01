@@ -29,6 +29,9 @@ public class InputManager : MonoBehaviour {
         //Caculate the X and Y vectors from mouse and player object.
         playerOnScreenPosition = Camera.main.WorldToScreenPoint(transform.position);
         cursorPositionFromPlayer = Input.mousePosition - playerOnScreenPosition;
+
+        //Check if Pause keybind is pressed.
+        CheckPauseKey();
     }
 
     //Change to Singleton later.
@@ -69,6 +72,13 @@ public class InputManager : MonoBehaviour {
             return true;
         } else {
             return false;
+        }
+    }
+
+    private void CheckPauseKey() {
+        if(playerInputActions.DefaultPlayer.Pause.triggered) {
+            Debug.Log("ESC key pressed.");
+            PauseMenuHandler.INSTANCE.TogglePauseMenu();
         }
     }
 

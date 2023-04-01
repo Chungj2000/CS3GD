@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour {
 
     private void Update() {
 
+        //Check if Player is dead.
+        if(Player.INSTANCE.IsDead()) {
+            return;
+        }
+
         MOVEMENT_SPEED = Player.INSTANCE.GetParamMOVE_SPD();
 
         Vector2 playerMovementVector = InputManager.INSTANCE.GetMovementVector();

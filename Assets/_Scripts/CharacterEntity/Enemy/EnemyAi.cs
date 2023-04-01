@@ -30,8 +30,9 @@ public class EnemyAi : MonoBehaviour {
             return;
         }
 
-        //Player is dead, therefore disable actions.
+        //Enemies cannot chase act against a dead Player.
         if(Player.INSTANCE.IsDead()) {
+            agent.isStopped = true;
             return;
         }
 

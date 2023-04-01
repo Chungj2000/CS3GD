@@ -38,6 +38,11 @@ public class ItemHandler : MonoBehaviour {
                 Player.INSTANCE.InteractWithItem(this);
             }
 
+        } else if (Player.INSTANCE.IsDead()) {
+
+            //Remove interaction messages if the Player is Dead.
+            NotificationHandler.INSTANCE.ClearInteractNotification();
+
         } else {
 
             NotificationHandler.INSTANCE.ClearInteractNotification();

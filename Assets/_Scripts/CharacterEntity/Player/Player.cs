@@ -53,6 +53,10 @@ public class Player : CharacterEntity {
     private void KillPlayer() {
         isDead  = true;
         Debug.Log("Player has died.");
+
+        //Load the GameOver screen.
+        GameOverHandler.INSTANCE.LoadGameOver();
+
         //Destroy(gameObject);
     }
 

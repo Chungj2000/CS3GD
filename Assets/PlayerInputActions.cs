@@ -62,6 +62,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""48cd887f-059a-4a17-8f6f-6af1c8364c97"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -218,6 +227,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b3e95af5-fe17-4aa7-b2c9-d7161f1a3e41"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -230,6 +250,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_DefaultPlayer_Attack = m_DefaultPlayer.FindAction("Attack", throwIfNotFound: true);
         m_DefaultPlayer_Interact = m_DefaultPlayer.FindAction("Interact", throwIfNotFound: true);
         m_DefaultPlayer_Camera = m_DefaultPlayer.FindAction("Camera", throwIfNotFound: true);
+        m_DefaultPlayer_Pause = m_DefaultPlayer.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,6 +314,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_DefaultPlayer_Attack;
     private readonly InputAction m_DefaultPlayer_Interact;
     private readonly InputAction m_DefaultPlayer_Camera;
+    private readonly InputAction m_DefaultPlayer_Pause;
     public struct DefaultPlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -301,6 +323,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_DefaultPlayer_Attack;
         public InputAction @Interact => m_Wrapper.m_DefaultPlayer_Interact;
         public InputAction @Camera => m_Wrapper.m_DefaultPlayer_Camera;
+        public InputAction @Pause => m_Wrapper.m_DefaultPlayer_Pause;
         public InputActionMap Get() { return m_Wrapper.m_DefaultPlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -322,6 +345,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Camera.started -= m_Wrapper.m_DefaultPlayerActionsCallbackInterface.OnCamera;
                 @Camera.performed -= m_Wrapper.m_DefaultPlayerActionsCallbackInterface.OnCamera;
                 @Camera.canceled -= m_Wrapper.m_DefaultPlayerActionsCallbackInterface.OnCamera;
+                @Pause.started -= m_Wrapper.m_DefaultPlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_DefaultPlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_DefaultPlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_DefaultPlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -338,6 +364,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Camera.started += instance.OnCamera;
                 @Camera.performed += instance.OnCamera;
                 @Camera.canceled += instance.OnCamera;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -348,5 +377,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnCamera(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

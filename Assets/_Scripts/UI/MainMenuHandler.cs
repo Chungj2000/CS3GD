@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuUI : MonoBehaviour {
+public class MainMenuHandler : MonoBehaviour {
     
     private const string newGame = "GameScene";
 

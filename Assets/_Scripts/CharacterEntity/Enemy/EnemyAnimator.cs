@@ -20,12 +20,15 @@ public class EnemyAnimator : MonoBehaviour {
 
     private void Update() {
 
+        //Make enemies idle when Player is dead.
         if(Player.INSTANCE.IsDead()) {
             enemyAnimator.SetBool(isIdle, Player.INSTANCE.IsDead());
+            enemyAnimator.SetBool(isWalking, !Player.INSTANCE.IsDead());
             return;
         }
 
         enemyAnimator.SetBool(isWalking, agent.velocity.magnitude > 0.01f);
+
     }
 
     public void PlayDead() {
