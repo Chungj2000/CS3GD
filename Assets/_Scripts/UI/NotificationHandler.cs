@@ -6,8 +6,14 @@ using TMPro;
 public class NotificationHandler : MonoBehaviour {
     
     public static NotificationHandler INSTANCE {get; private set;}
+
+    [Header("GameOverlayUI Fields")]
     [SerializeField] private TextMeshProUGUI waveNotificationUI;
     [SerializeField] private TextMeshProUGUI interactNotificationUI;
+
+    [Header("ItemOverlayUI Fields")]
+    [SerializeField] private TextMeshProUGUI itemNameNotificationUI;
+    [SerializeField] private TextMeshProUGUI itemDescNotificationUI;
 
     private void Awake() {
 
@@ -34,6 +40,16 @@ public class NotificationHandler : MonoBehaviour {
 
     public void ClearInteractNotification() {
         interactNotificationUI.text = "";
+    }
+
+    public void SetItemNotification(string itemName, string itemDesc) {
+        itemNameNotificationUI.text = itemName;
+        itemDescNotificationUI.text = itemDesc;
+    }
+
+    public void ClearItemNotification() {
+        itemNameNotificationUI.text = "";
+        itemDescNotificationUI.text = "";
     }
 
 }

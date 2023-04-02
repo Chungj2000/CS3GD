@@ -88,4 +88,8 @@ public class PauseMenuHandler : MonoBehaviour
         }
     }
 
+    public bool IsPauseActive() {
+        return isPauseActive;
+    }
+
 }

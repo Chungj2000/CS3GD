@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class ItemHandler : MonoBehaviour {
 
-    [SerializeField] private ParameterValues parameterValues;
     [SerializeField] private float rotationSpeed = 100f;
+    [SerializeField] private ParameterValues parameterValues;
+
+    private Dictionary<string, string> descriptions;
     private Dictionary<string, float> parameters;
+
     private int interactDistance = 1;
+    private Canvas itemOverlayUI;
+
+    private const string itemOverlayUI_tag = "ItemOverlayUI";
+    private const string interactionMessage = "PICK UP [F]";
 
     private void Awake() {
         parameterValues.Awake();
         parameters = parameterValues.GetParameters();
+        descriptions = parameterValues.GetDescriptions();
+        itemOverlayUI = GameObject.FindWithTag(itemOverlayUI_tag).GetComponent<Canvas>();
     }
 
     private void Update() {
@@ -19,6 +28,7 @@ public class ItemHandler : MonoBehaviour {
         //Determine whether the player is within an interaction distance.
         ItemInteraction();
 
+        //Animate the Prefab model.
         AnimatePrefab();
 
     }
@@ -31,21 +41,42 @@ public class ItemHandler : MonoBehaviour {
 
         if(PlayerWithinInteractDistance()) {
             
-            NotificationHandler.INSTANCE.SetInteractNotification("INTERACT [F]");
+            //Update all UI elements when Player within range of interation.
+            NotificationHandler.INSTANCE.SetInteractNotification(interactionMessage);
+
+            ShowItemOverlay();
+            NotificationHandler.INSTANCE.SetItemNotification(
+                descriptions["itemName"],
+                descriptions["itemDesc"]
+            );
+
+            //Hide UI visuals when currently paused.
+            if(PauseMenuHandler.INSTANCE.IsPauseActive()) {
+                ConcealNotifications();
+            }
 
             if(InputManager.INSTANCE.IsInteracting()) {
+
                 Debug.Log("Player has interacted with an item.");
                 Player.INSTANCE.InteractWithItem(this);
+
+                //When item is about to be Destroyed from being picked up.
+                ConcealNotifications();
+
+                //Remove the item when picked up.
+                DestroyItem();
+
             }
 
         } else if (Player.INSTANCE.IsDead()) {
 
-            //Remove interaction messages if the Player is Dead.
-            NotificationHandler.INSTANCE.ClearInteractNotification();
+            //When Player is Dead.
+            ConcealNotifications();
 
         } else {
 
-            NotificationHandler.INSTANCE.ClearInteractNotification();
+            //If Player is out of range.
+            ConcealNotifications();
 
         }
 
@@ -76,10 +107,40 @@ public class ItemHandler : MonoBehaviour {
         return parameters;
     }
 
+    private void ShowItemOverlay() {
+        itemOverlayUI.enabled = true;
+    }
+
+    private void HideItemOverlay() {
+        itemOverlayUI.enabled = false;
+    }
+
+    private void ConcealNotifications() {
+
+        //Remove interaction & item messages.
+        NotificationHandler.INSTANCE.ClearInteractNotification();
+
+        HideItemOverlay();
+        NotificationHandler.INSTANCE.ClearItemNotification();
+
+    }
+
+    private void DestroyItem() {
+        Debug.Log("Item destroyed.");
+        Destroy(gameObject);
+    }
+
     public Dictionary<string, float> GetParameters() => parameterValues.GetParameters();
+    public Dictionary<string, string> GetDescriptions() => parameterValues.GetDescriptions();
+
+
 
     [System.Serializable]
     private class ParameterValues {
+
+        [Header("Item Descriptors")]
+        [SerializeField] private string itemName;
+        [SerializeField] private string itemDesc;
 
         [Header("Item Parameter Modifiers")]
         [SerializeField] private float paramMAX_HP = 0;
@@ -99,10 +160,16 @@ public class ItemHandler : MonoBehaviour {
         [SerializeField] private float multipltierMOVE_SPD = 1;
         [SerializeField] private float multipltierDEF = 1;
 
+        private Dictionary<string, string> descriptions = new Dictionary<string, string>();
         private Dictionary<string, float> parameters = new Dictionary<string, float>();
 
         public void Awake() {
 
+            //Initialise descriptions.
+            descriptions.Add("itemName", itemName);
+            descriptions.Add("itemDesc", itemDesc);
+
+            //Initialise parameters.
             parameters.Add("paramMAX_HP", paramMAX_HP);
             parameters.Add("paramHP", paramHP);
             parameters.Add("paramATK", paramATK);
@@ -125,6 +192,10 @@ public class ItemHandler : MonoBehaviour {
 
         public int Size() {
             return parameters.Count;
+        }
+
+        public Dictionary<string, string> GetDescriptions() {
+            return descriptions;
         }
 
         public Dictionary<string, float> GetParameters() {
