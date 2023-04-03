@@ -37,6 +37,9 @@ public class Player : CharacterEntity {
 
         //Debug.Log("Player Health At: " + paramHP);
 
+        //Update PlayerParamaterUI health value.
+        PlayerParameterUI.INSTANCE.UpdatePlayerParameterUI_Health();
+
         CheckHealth();
         
     }
@@ -69,6 +72,10 @@ public class Player : CharacterEntity {
         //Update Player parameters.
         ModifyParameters(item.GetParameters());
         MultiplierParameters(item.GetParameters());
+        RecoverHP(item.GetRecoveryMultiplier());
+
+        //Update PlayerParameterUI values with new parameters.
+        PlayerParameterUI.INSTANCE.SetPlayerParameterUI();
 
         //Modify HealthBar visual if there is a change in HP.
         if(item.GetParameters()["paramMAX_HP"] != 0 || item.GetParameters()["paramHP"] != 0) {

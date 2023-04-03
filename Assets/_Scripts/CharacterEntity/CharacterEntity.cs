@@ -15,12 +15,16 @@ public abstract class CharacterEntity : MonoBehaviour {
     [SerializeField] protected float paramDEF;
 
     protected virtual void Awake() {
+        //Restrict the maximum amount of HP a entity can hold based on MAX_HP value.
+        SetHealthLimit();
+
         //Ensure entity is set to full health when spawned.
         paramHP = paramMAX_HP;
     }
 
     public abstract void TakeDamage(float paramATK);
 
+    //Add/Subtract parameters by given values.
     public void ModifyParameters(Dictionary<string, float> modifyingParameters) {
 
         paramMAX_HP += modifyingParameters["paramMAX_HP"];
@@ -46,33 +50,43 @@ public abstract class CharacterEntity : MonoBehaviour {
         
         Debug.Log("Parameters modified.");
 
+        SetHealthLimit();
+
     }
 
+    //Multiply parameters by given values.
     public void MultiplierParameters(Dictionary<string, float> modifyingParameters) {
 
-        paramMAX_HP = paramMAX_HP * modifyingParameters["multipltierMAX_HP"];
+        paramMAX_HP = paramMAX_HP * modifyingParameters["multiplierMAX_HP"];
         Debug.Log("Current MAX HP: " + paramMAX_HP);
 
-        paramHP = paramHP * modifyingParameters["multipltierHP"];
+        paramHP = paramHP * modifyingParameters["multiplierHP"];
         Debug.Log("Current HP: " + paramHP);
 
-        paramATK = paramATK * modifyingParameters["multipltierATK"];
+        paramATK = paramATK * modifyingParameters["multiplierATK"];
         Debug.Log("Current ATK: " + paramATK);
 
-        paramATK_SPD = paramATK_SPD * modifyingParameters["multipltierATK_SPD"];
+        paramATK_SPD = paramATK_SPD * modifyingParameters["multiplierATK_SPD"];
         Debug.Log("Current ATK SPD: " + paramATK_SPD);
 
-        paramATK_RANGE = paramATK_RANGE * modifyingParameters["multipltierATK_RANGE"];
+        paramATK_RANGE = paramATK_RANGE * modifyingParameters["multiplierATK_RANGE"];
         Debug.Log("Current ATK RANGE: " + paramATK_RANGE);
 
-        paramMOVE_SPD = paramMOVE_SPD * modifyingParameters["multipltierMOVE_SPD"];
+        paramMOVE_SPD = paramMOVE_SPD * modifyingParameters["multiplierMOVE_SPD"];
         Debug.Log("Current MOVE SPD: " + paramMOVE_SPD);
 
-        paramDEF = paramDEF * modifyingParameters["multipltierDEF"];
+        paramDEF = paramDEF * modifyingParameters["multiplierDEF"];
         Debug.Log("Current DEF: " + paramDEF);
         
         Debug.Log("Parameters multiplied.");
 
+        SetHealthLimit();
+
+    }
+
+    //Increases health of the entity by a fixed percentage of their MAX_HP.
+    protected void RecoverHP(float recoveryPercentage) {
+        paramHP += paramMAX_HP * (recoveryPercentage);
     }
 
     protected float CalculateDamage(float paramATK_Value) {
@@ -88,6 +102,12 @@ public abstract class CharacterEntity : MonoBehaviour {
         }
 
         return damage;
+    }
+
+    //Call this whenever MAX_HP is, or may be changed to restrict HP by MAX_HP.
+    private void SetHealthLimit() {
+        paramHP = Mathf.Clamp(paramHP, 0f, paramMAX_HP);
+        //Debug.Log("New HP limit at: " + paramMAX_HP);
     }
 
     //Parameter Getters.

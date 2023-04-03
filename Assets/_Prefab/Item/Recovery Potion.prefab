@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3430603986704555417
+--- !u!1001 &8791898587537624927
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 5418102069860547742, guid: 3fe3a74b68cc9734ab86269a33e5ad2d,
         type: 3}
       propertyPath: m_Name
-      value: GrailOfBlood
+      value: Recovery Potion
       objectReference: {fileID: 0}
     - target: {fileID: 5418102069860547743, guid: 3fe3a74b68cc9734ab86269a33e5ad2d,
         type: 3}
@@ -75,18 +75,17 @@ PrefabInstance:
     - target: {fileID: 5418102069860547743, guid: 3fe3a74b68cc9734ab86269a33e5ad2d,
         type: 3}
       propertyPath: parameterValues.itemDesc
-      value: A holy chalice meant to be filled to the brim with blood during rituals.
-        Grants +100 MAX HP, & +25 ATK, but reduces current HP by 25%.
+      value: An advanced medical supply. Recovers HP by 25%.
       objectReference: {fileID: 0}
     - target: {fileID: 5418102069860547743, guid: 3fe3a74b68cc9734ab86269a33e5ad2d,
         type: 3}
       propertyPath: parameterValues.itemName
-      value: Grail Of Blood
+      value: Recovery Potion
       objectReference: {fileID: 0}
     - target: {fileID: 5418102069860547743, guid: 3fe3a74b68cc9734ab86269a33e5ad2d,
         type: 3}
       propertyPath: parameterValues.paramATK
-      value: 25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5418102069860547743, guid: 3fe3a74b68cc9734ab86269a33e5ad2d,
         type: 3}
@@ -95,18 +94,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5418102069860547743, guid: 3fe3a74b68cc9734ab86269a33e5ad2d,
         type: 3}
-      propertyPath: parameterValues.multiplierHP
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5418102069860547743, guid: 3fe3a74b68cc9734ab86269a33e5ad2d,
-        type: 3}
-      propertyPath: parameterValues.paramATK_SPD
+      propertyPath: parameterValues.paramMAX_HP
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5418102069860547743, guid: 3fe3a74b68cc9734ab86269a33e5ad2d,
-        type: 3}
-      propertyPath: parameterValues.multipltierHP
-      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 5418102069860547743, guid: 3fe3a74b68cc9734ab86269a33e5ad2d,
         type: 3}
@@ -115,24 +104,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5418102069860547743, guid: 3fe3a74b68cc9734ab86269a33e5ad2d,
         type: 3}
-      propertyPath: parameterValues.multipltierATK
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5418102069860547743, guid: 3fe3a74b68cc9734ab86269a33e5ad2d,
-        type: 3}
-      propertyPath: parameterValues.multipltierDEF
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5418102069860547743, guid: 3fe3a74b68cc9734ab86269a33e5ad2d,
-        type: 3}
-      propertyPath: parameterValues.itemDescription
-      value: A holy chalice meant to be filled to the brim with blood during rituals.
-        Grants +100 MAX HP, & +20 ATK, but reduces current HP by 25%.
-      objectReference: {fileID: 0}
-    - target: {fileID: 5418102069860547743, guid: 3fe3a74b68cc9734ab86269a33e5ad2d,
-        type: 3}
-      propertyPath: parameterValues.multipltierMAX_HP
-      value: 1
+      propertyPath: parameterValues.recoveryMultiplier
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fe3a74b68cc9734ab86269a33e5ad2d, type: 3}

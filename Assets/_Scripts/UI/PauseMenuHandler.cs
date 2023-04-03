@@ -36,11 +36,7 @@ public class PauseMenuHandler : MonoBehaviour
         ToggleIsPauseActive();
     }
 
-    public void SaveClicked() {
-        Debug.Log("Save clicked.");
-    }
-
-    public void LoadClicked() {
+    public void LeaderboardClicked() {
         Debug.Log("Load clicked.");
     }
 

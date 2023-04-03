@@ -12,6 +12,8 @@ public class EnemyAi : MonoBehaviour {
 
     private bool playerInAttackRange, hasAttacked;
     private bool isDead;
+
+    [SerializeField] private GameObject healthPotionPrefab;
     
     private void Start() {
 
@@ -105,6 +107,9 @@ public class EnemyAi : MonoBehaviour {
         //Debug.Log("Enemy Killed!");
         ScoreTracker.INSTANCE.AddScore(enemyEntity.GetParamPOINTS());
 
+        //Randomly drops a health potion on death.
+        ChanceDropHealthPotion();
+
         //Rescale the collider so it is not treated as an obstacle.
         //agent.radius = 0f;
         //Unfortunately can still collide with enemies but to a lesser extent.
@@ -126,6 +131,19 @@ public class EnemyAi : MonoBehaviour {
 
     public NavMeshAgent GetAgent() {
         return agent;
+    }
+
+    private void ChanceDropHealthPotion() {
+
+        float randomValue = Random.Range(0f, 1f);
+
+        //Debug.Log("Rolled a: " + randomValue);
+
+        if(randomValue <= enemyEntity.GetHealthPotionDropRate()) {
+            //Debug.Log("Health Potion dropped.");
+            Instantiate(healthPotionPrefab, enemyEntity.transform.position, Quaternion.identity);
+        }
+
     }
 
 }

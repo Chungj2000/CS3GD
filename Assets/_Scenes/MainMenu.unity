@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 405207147}
   - component: {fileID: 405207146}
   m_Layer: 5
-  m_Name: Load_Btn
+  m_Name: Leaderboard_Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -563,7 +563,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -75}
-  m_SizeDelta: {x: 125, y: 60}
+  m_SizeDelta: {x: 325, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &405207146
 MonoBehaviour:
@@ -608,7 +608,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 405207147}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1367300348}
+        m_TargetAssemblyTypeName: MainMenuHandler, Assembly-CSharp
+        m_MethodName: LeaderboardClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &405207147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,7 +641,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LOAD
+  m_text: LEADERBOARD
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1403,7 +1415,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2116742363}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1367300348}
+        m_TargetAssemblyTypeName: MainMenuHandler, Assembly-CSharp
+        m_MethodName: SettingsClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2116742363
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,0 +1,8 @@
+HealthBarBackground -> Myself
+ParamMAX_HP -> Ladyluck.itch.io (Modified)
+ParamHP -> Ladyluck.itch.io
+ParamATK -> Ladyluck.itch.io
+ParamATK_SPD -> Ladyluck.itch.io (Modified)
+ParamATK_RANGE -> https://s3.amazonaws.com/aqcards/index.html
+ParamMOVE_SPD -> Ladyluck.itch.io
+ParamDEF -> Ladyluck.itch.io

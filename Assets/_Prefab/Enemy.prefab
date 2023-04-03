@@ -94,6 +94,7 @@ MonoBehaviour:
   paramMOVE_SPD: 3
   paramDEF: 5
   paramPOINTS: 10
+  healthPotionDropRate: 0.99
 --- !u!114 &8463529049182249692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43253d4e4d66ba0458925c3a00ab5f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthPotionPrefab: {fileID: 5993583679918301998, guid: c6ff9ad4cd9173b4d99551d2777221ab,
+    type: 3}
 --- !u!114 &2305083248161547203
 MonoBehaviour:
   m_ObjectHideFlags: 0

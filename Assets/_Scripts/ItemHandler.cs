@@ -50,6 +50,8 @@ public class ItemHandler : MonoBehaviour {
                 descriptions["itemDesc"]
             );
 
+            PlayerParameterUI.INSTANCE.UpdateItemParametersUI(parameters);
+
             //Hide UI visuals when currently paused.
             if(PauseMenuHandler.INSTANCE.IsPauseActive()) {
                 ConcealNotifications();
@@ -123,6 +125,8 @@ public class ItemHandler : MonoBehaviour {
         HideItemOverlay();
         NotificationHandler.INSTANCE.ClearItemNotification();
 
+        PlayerParameterUI.INSTANCE.ClearChangeAllValues();
+
     }
 
     private void DestroyItem() {
@@ -132,6 +136,7 @@ public class ItemHandler : MonoBehaviour {
 
     public Dictionary<string, float> GetParameters() => parameterValues.GetParameters();
     public Dictionary<string, string> GetDescriptions() => parameterValues.GetDescriptions();
+    public float GetRecoveryMultiplier() => parameterValues.GetRecoveryMultiplier();
 
 
 
@@ -152,13 +157,18 @@ public class ItemHandler : MonoBehaviour {
         [SerializeField] private float paramDEF = 0;
 
         [Header("Parameter Multipliers")]
-        [SerializeField] private float multipltierMAX_HP = 1;
-        [SerializeField] private float multipltierHP = 1;
-        [SerializeField] private float multipltierATK = 1;
-        [SerializeField] private float multipltierATK_SPD = 1;
-        [SerializeField] private float multipltierATK_RANGE = 1;
-        [SerializeField] private float multipltierMOVE_SPD = 1;
-        [SerializeField] private float multipltierDEF = 1;
+        [SerializeField] private float multiplierMAX_HP = 1;
+        [SerializeField] private float multiplierHP = 1;
+        [SerializeField] private float multiplierATK = 1;
+        [SerializeField] private float multiplierATK_SPD = 1;
+        [SerializeField] private float multiplierATK_RANGE = 1;
+        [SerializeField] private float multiplierMOVE_SPD = 1;
+        [SerializeField] private float multiplierDEF = 1;
+
+        [Header("Unique Parameters")]
+
+        //Unique field for HP recovery scaled by MAX_HP.
+        [SerializeField] private float recoveryMultiplier = 1;
 
         private Dictionary<string, string> descriptions = new Dictionary<string, string>();
         private Dictionary<string, float> parameters = new Dictionary<string, float>();
@@ -178,13 +188,13 @@ public class ItemHandler : MonoBehaviour {
             parameters.Add("paramMOVE_SPD", paramMOVE_SPD);
             parameters.Add("paramDEF", paramDEF);
 
-            parameters.Add("multipltierMAX_HP", multipltierMAX_HP);
-            parameters.Add("multipltierHP", multipltierHP);
-            parameters.Add("multipltierATK", multipltierATK);
-            parameters.Add("multipltierATK_SPD", multipltierATK_SPD);
-            parameters.Add("multipltierATK_RANGE", multipltierATK_RANGE);
-            parameters.Add("multipltierMOVE_SPD", multipltierMOVE_SPD);
-            parameters.Add("multipltierDEF", multipltierDEF);
+            parameters.Add("multiplierMAX_HP", multiplierMAX_HP);
+            parameters.Add("multiplierHP", multiplierHP);
+            parameters.Add("multiplierATK", multiplierATK);
+            parameters.Add("multiplierATK_SPD", multiplierATK_SPD);
+            parameters.Add("multiplierATK_RANGE", multiplierATK_RANGE);
+            parameters.Add("multiplierMOVE_SPD", multiplierMOVE_SPD);
+            parameters.Add("multiplierDEF", multiplierDEF);
 
             Debug.Log("Item initiated.");
 
@@ -200,6 +210,10 @@ public class ItemHandler : MonoBehaviour {
 
         public Dictionary<string, float> GetParameters() {
             return parameters;
+        }
+
+        public float GetRecoveryMultiplier() {
+            return recoveryMultiplier;
         }
 
     }

@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class Enemy : CharacterEntity {
 
     [SerializeField] private int paramPOINTS = 10;
+    [Tooltip("Between 0 - 1")] [SerializeField] private float healthPotionDropRate = 0.1f;
 
     private EnemyAi enemyAi;
     private ParticleSystem bloodSplatter;
@@ -38,6 +39,10 @@ public class Enemy : CharacterEntity {
 
     public int GetParamPOINTS() {
         return paramPOINTS;
+    }
+
+    public float GetHealthPotionDropRate() {
+        return healthPotionDropRate;
     }
 
 }
