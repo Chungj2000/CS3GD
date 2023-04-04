@@ -10,126 +10,65 @@ public class ItemHandler : MonoBehaviour {
     private Dictionary<string, string> descriptions;
     private Dictionary<string, float> parameters;
 
-    private int interactDistance = 1;
-    private Canvas itemOverlayUI;
-
-    private const string itemOverlayUI_tag = "ItemOverlayUI";
     private const string interactionMessage = "PICK UP [F]";
 
     private void Awake() {
         parameterValues.Awake();
+
         parameters = parameterValues.GetParameters();
         descriptions = parameterValues.GetDescriptions();
-        itemOverlayUI = GameObject.FindWithTag(itemOverlayUI_tag).GetComponent<Canvas>();
     }
 
     private void Update() {
-
-        //Determine whether the player is within an interaction distance.
-        ItemInteraction();
-
         //Animate the Prefab model.
         AnimatePrefab();
-
     }
 
     private void AnimatePrefab() {
         transform.eulerAngles += new Vector3(0, 1, 0) * rotationSpeed * Time.deltaTime;
     }
 
-    private void ItemInteraction() {
+    //Player within range of item therefore add it to the possible items the Player can interact with.
+    private void OnTriggerEnter(Collider collider) {
 
-        if(PlayerWithinInteractDistance()) {
-            
-            //Update all UI elements when Player within range of interation.
-            NotificationHandler.INSTANCE.SetInteractNotification(interactionMessage);
+        //Debug.Log("Something has collided with the item.");
 
-            ShowItemOverlay();
-            NotificationHandler.INSTANCE.SetItemNotification(
-                descriptions["itemName"],
-                descriptions["itemDesc"]
-            );
-
-            PlayerParameterUI.INSTANCE.UpdateItemParametersUI(parameters);
-
-            //Hide UI visuals when currently paused.
-            if(PauseMenuHandler.INSTANCE.IsPauseActive()) {
-                ConcealNotifications();
-            }
-
-            if(InputManager.INSTANCE.IsInteracting()) {
-
-                Debug.Log("Player has interacted with an item.");
-                Player.INSTANCE.InteractWithItem(this);
-
-                //When item is about to be Destroyed from being picked up.
-                ConcealNotifications();
-
-                //Remove the item when picked up.
-                DestroyItem();
-
-            }
-
-        } else if (Player.INSTANCE.IsDead()) {
-
-            //When Player is Dead.
-            ConcealNotifications();
-
-        } else {
-
-            //If Player is out of range.
-            ConcealNotifications();
-
+        if(collider.tag == "Player") {
+            //Debug.Log("Player has been detected");
+            PlayerItemHandler.INSTANCE.AddNewItemInRange(this);
         }
 
     }
 
-    private bool PlayerWithinInteractDistance() {
+    //Player moved outside range of item therefore remove it from the possible items the Player can interact with.
+    private void OnTriggerExit(Collider collider) {
 
-        //Player is dead, therefore doesn't exist.
-        if(Player.INSTANCE.IsDead()) {
-            return false;
-        }
+        //Debug.Log("Something has exited the item collider.");
 
-        if(Vector3.Distance(Player.INSTANCE.transform.position, transform.position) <= interactDistance) {
-            //Debug.Log("Player is within interaction distance.");
-            return true;
-        } else {
-            //Debug.Log("Player is not within interaction distance.");
-            return false;
+        if(collider.tag == "Player") {
+            //Debug.Log("Player has been detected");
+            PlayerItemHandler.INSTANCE.RemoveItemInRange(this);
         }
 
     }
 
-    public Dictionary<string, float> GetMultipliedParameters(float multiplier) {
-        foreach(string parameter in parameters.Keys) {
-            parameters[parameter] = parameters[parameter] * multiplier;
-        }
+    //Update all UI elements when Player within range of interation.
+    public void DisplayInteractionNotifications() {
 
-        return parameters;
-    }
+        
+        NotificationHandler.INSTANCE.SetInteractNotification(interactionMessage);
 
-    private void ShowItemOverlay() {
-        itemOverlayUI.enabled = true;
-    }
+        NotificationHandler.INSTANCE.SetItemNotification(
+            descriptions["itemName"],
+            descriptions["itemDesc"]
+        );
 
-    private void HideItemOverlay() {
-        itemOverlayUI.enabled = false;
-    }
-
-    private void ConcealNotifications() {
-
-        //Remove interaction & item messages.
-        NotificationHandler.INSTANCE.ClearInteractNotification();
-
-        HideItemOverlay();
-        NotificationHandler.INSTANCE.ClearItemNotification();
-
-        PlayerParameterUI.INSTANCE.ClearChangeAllValues();
+        PlayerParameterUI.INSTANCE.UpdateItemParametersUI(parameters);
 
     }
 
-    private void DestroyItem() {
+    //Destroy the item when interacted with.
+    public void DestroyItem() {
         Debug.Log("Item destroyed.");
         Destroy(gameObject);
     }
@@ -168,7 +107,7 @@ public class ItemHandler : MonoBehaviour {
         [Header("Unique Parameters")]
 
         //Unique field for HP recovery scaled by MAX_HP.
-        [SerializeField] private float recoveryMultiplier = 1;
+        [SerializeField] private float recoveryMultiplier = 0;
 
         private Dictionary<string, string> descriptions = new Dictionary<string, string>();
         private Dictionary<string, float> parameters = new Dictionary<string, float>();
@@ -196,7 +135,9 @@ public class ItemHandler : MonoBehaviour {
             parameters.Add("multiplierMOVE_SPD", multiplierMOVE_SPD);
             parameters.Add("multiplierDEF", multiplierDEF);
 
-            Debug.Log("Item initiated.");
+            parameters.Add("recoveryMultiplier", recoveryMultiplier);
+
+            //Debug.Log("Item initiated.");
 
         }
 

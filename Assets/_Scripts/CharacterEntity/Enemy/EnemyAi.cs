@@ -65,6 +65,8 @@ public class EnemyAi : MonoBehaviour {
 
         agent.SetDestination(transform.position);
         transform.LookAt(playerEntity.transform.position);
+        //Fix rotation angle to exlusively the y-axis when attacking.
+        transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
 
         if(!hasAttacked) {
 

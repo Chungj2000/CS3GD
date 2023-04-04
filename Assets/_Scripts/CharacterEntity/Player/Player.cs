@@ -74,13 +74,13 @@ public class Player : CharacterEntity {
         MultiplierParameters(item.GetParameters());
         RecoverHP(item.GetRecoveryMultiplier());
 
-        //Update PlayerParameterUI values with new parameters.
-        PlayerParameterUI.INSTANCE.SetPlayerParameterUI();
-
         //Modify HealthBar visual if there is a change in HP.
         if(item.GetParameters()["paramMAX_HP"] != 0 || item.GetParameters()["paramHP"] != 0) {
             OnDamaged?.Invoke(this, EventArgs.Empty);
         } 
+
+        //Update PlayerParameterUI values with new parameters.
+        PlayerParameterUI.INSTANCE.SetPlayerParameterUI();
         
     }
 

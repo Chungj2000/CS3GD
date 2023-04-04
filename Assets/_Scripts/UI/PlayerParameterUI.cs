@@ -91,7 +91,7 @@ public class PlayerParameterUI : MonoBehaviour {
 
         //Determine which function to call based on item parameters.
         CompareItemParameters(playerMAX_HP, "paramMAX_HP", "multiplierMAX_HP", textChangeParamMAX_HP);
-        CompareItemParameters(playerHP, "paramHP", "multiplierHP", textChangeParamHP);
+        CompareItemParameterHP(playerMAX_HP, playerHP, "paramHP", "multiplierHP", "recoveryMultiplier", textChangeParamHP);
         CompareItemParameters(playerATK, "paramATK", "multiplierATK", textChangeParamATK);
         CompareItemParameters(playerATK_SPD, "paramATK_SPD", "multiplierATK_SPD", textChangeParamATK_SPD);
         CompareItemParameters(playerATK_RANGE, "paramATK_RANGE", "multiplierATK_RANGE", textChangeParamATK_RANGE);
@@ -105,23 +105,57 @@ public class PlayerParameterUI : MonoBehaviour {
     }
 
     //Identify whether the item increases/decreases parameter by additive, multiplicative values or both.
-    private void CompareItemParameters(float playerParam, string parameterModifiedKey, string parameterMultiplierKey, TextMeshProUGUI changeValue) {
+    private void CompareItemParameters(float playerParam, string parameterModifierKey, string parameterMultiplierKey, TextMeshProUGUI changeValue) {
 
-        if(playerParam != playerParam + itemParameters[parameterModifiedKey] && 
+        if(playerParam != playerParam + itemParameters[parameterModifierKey] && 
             playerParam != playerParam * itemParameters[parameterMultiplierKey]) {
 
             //Item gives an additive and multiplicative change.
-            UpdateItemParameterUI(playerParam, parameterModifiedKey, parameterMultiplierKey, changeValue);
+            UpdateItemParameterUI(playerParam, parameterModifierKey, parameterMultiplierKey, changeValue);
 
-        } else if(playerParam != playerParam + itemParameters[parameterModifiedKey]) {
+        } else if(playerParam != playerParam + itemParameters[parameterModifierKey]) {
 
             //Item gives an additive change.
-            UpdateItemModifiedParameterUI(playerParam, parameterModifiedKey, changeValue);
+            UpdateItemModifiedParameterUI(playerParam, parameterModifierKey, changeValue);
 
         } else if(playerParam != playerParam * itemParameters[parameterMultiplierKey]) {
 
             //Item gives a multiplicative change.
             UpdateItemMultipliedParameterUI(playerParam, parameterMultiplierKey, changeValue);
+
+        } else {
+
+            //No change to parameter, therefore remove visual.
+            ClearChangeValue(changeValue);
+
+        }
+
+    }
+
+    //Recovery should not be given a value if other HP modifiers are also given values else it will break the function.
+    //Identify whether the item increases/decreases HP by additive, multiplicative, scaled by MAX_HP values or a combination.
+    private void CompareItemParameterHP(float playerMAX_HP, float playerHP, string modifiedHP, string multipliedHP, string recoveryHP, TextMeshProUGUI changeValue) {
+
+        if(playerHP != playerHP + itemParameters[modifiedHP] && 
+            playerHP != playerHP * itemParameters[multipliedHP]) {
+
+            //Item gives an additive and multiplicative change to HP.
+            UpdateItemParameterUI(playerHP, modifiedHP, multipliedHP, changeValue);
+
+        } else if(playerHP != playerHP + itemParameters[modifiedHP]) {
+
+            //Item adds/removes a value of HP.
+            UpdateItemModifiedParameterUI(playerHP, modifiedHP, changeValue);
+
+        } else if(playerHP != playerHP * itemParameters[multipliedHP]) {
+
+            //Item multiplies HP by a value.
+            UpdateItemMultipliedParameterUI(playerHP, multipliedHP, changeValue);
+
+        } else if(playerHP != playerHP + (playerMAX_HP * itemParameters[recoveryHP])) {
+
+            //Item recovers a percentage of HP based on MAX_HP scaling.
+            UpdateItemRecoveryParameterUI(playerMAX_HP, playerHP, recoveryHP, changeValue);
 
         } else {
 
@@ -172,6 +206,21 @@ public class PlayerParameterUI : MonoBehaviour {
         } else {
             //If item decreases Player parameter. Value should already have a '-'.
             changeValue.text = string.Format("[" + ((playerParam * itemParameters[parameterKey]) - playerParam) +  "]");
+            changeValue.color = changeValueDecrease;
+        }
+
+    }
+
+    //Calculate the recovery amount of HP and display the output.
+    private void UpdateItemRecoveryParameterUI(float playerMAX_HP, float playerHP, string recoveryHP, TextMeshProUGUI changeValue) {
+
+        if(playerHP < playerHP + (playerMAX_HP * itemParameters[recoveryHP])) {
+            //If item increases Player parameter.
+            changeValue.text = string.Format("[+" + (playerMAX_HP * itemParameters[recoveryHP]) +  "]");
+            changeValue.color = changeValueIncrease;
+        } else {
+            //If item decreases Player parameter. Value should already have a '-'.
+            changeValue.text = string.Format("[" + (playerMAX_HP * itemParameters[recoveryHP]) +  "]");
             changeValue.color = changeValueDecrease;
         }
 

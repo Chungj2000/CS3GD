@@ -107,5 +107,10 @@ PrefabInstance:
       propertyPath: parameterValues.paramMOVE_SPD
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5418102069860547743, guid: 3fe3a74b68cc9734ab86269a33e5ad2d,
+        type: 3}
+      propertyPath: parameterValues.recoveryMultiplier
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fe3a74b68cc9734ab86269a33e5ad2d, type: 3}
