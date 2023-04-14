@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuHandler : MonoBehaviour {
     
+    private OptionsMenuHandler optionMenu;
     private const string newGame = "GameScene";
+
+    private void Start() {
+        optionMenu = GetComponent<OptionsMenuHandler>();
+    }
 
     public void NewGameClicked() {
         Debug.Log("New Game clicked.");
@@ -16,8 +21,9 @@ public class MainMenuHandler : MonoBehaviour {
         Debug.Log("Leaderboard clicked.");
     }
 
-    public void SettingsClicked() {
-        Debug.Log("Settings clicked.");
+    public void OptionsClicked() {
+        Debug.Log("Options clicked.");
+        optionMenu.ShowOptions();
     }
 
     public void QuitClicked() {

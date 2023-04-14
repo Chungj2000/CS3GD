@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenuHandler : MonoBehaviour
-{
+public class PauseMenuHandler : MonoBehaviour {
     
     public static PauseMenuHandler INSTANCE {get; private set;}
+
+    private OptionsMenuHandler optionMenu;
     private const string mainMenu = "MainMenu";
     private bool isPauseActive;
 
@@ -27,6 +28,10 @@ public class PauseMenuHandler : MonoBehaviour
 
     }
 
+    private void Start() {
+        optionMenu = GetComponent<OptionsMenuHandler>();
+    }
+
     private void Update() {
         PauseMenuDisplay();
     }
@@ -40,8 +45,9 @@ public class PauseMenuHandler : MonoBehaviour
         Debug.Log("Load clicked.");
     }
 
-    public void SettingsClicked() {
-        Debug.Log("Settings clicked.");
+    public void OptionsClicked() {
+        Debug.Log("Options clicked.");
+        optionMenu.ShowOptions();
     }
 
     public void MainMenuClicked() {
