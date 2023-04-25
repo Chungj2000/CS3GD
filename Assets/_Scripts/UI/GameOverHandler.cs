@@ -53,6 +53,8 @@ public class GameOverHandler : MonoBehaviour {
     }
 
     public void LoadGameOver() {
+
+        SoundSystem.INSTANCE.PlaySFX(SoundSystem.INSTANCE.GetGameOverSFX(), SoundSystem.INSTANCE.GetAudioSourceSFX());
         
         INSTANCE.ShowGameOver();
         Debug.Log("Game Over Screen loaded.");

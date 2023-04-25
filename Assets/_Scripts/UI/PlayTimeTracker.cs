@@ -22,4 +22,8 @@ public class PlayTimeTracker : MonoBehaviour {
         
         playTimeUI.text = string.Format("PLAY TIME | {0:D2}:{1:D2}:{2:D2}", hours, mins, secs);
     }
+
+    public float GetPlayTime() {
+        return playTimer;
+    }
 }

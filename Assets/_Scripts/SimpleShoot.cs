@@ -20,6 +20,11 @@ public class SimpleShoot : MonoBehaviour
     [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 500f;
     [Tooltip("Casing Ejection Speed")] [SerializeField] private float ejectPower = 150f;
 
+    private AudioSource shootSource;
+
+    private void Awake() {
+        shootSource = GetComponent<AudioSource>();
+    }
 
     void Start()
     {
@@ -40,6 +45,7 @@ public class SimpleShoot : MonoBehaviour
             //Debug.Log("Attack triggered.");
             //Calls animation on the gun that has the relevant animation events that will fire
             gunAnimator.SetTrigger("Fire");
+            SoundSystem.INSTANCE.PlaySFX(SoundSystem.INSTANCE.GetShootSFX(), shootSource);
         }
     }
 
