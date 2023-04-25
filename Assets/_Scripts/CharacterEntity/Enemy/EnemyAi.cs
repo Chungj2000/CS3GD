@@ -161,11 +161,14 @@ public class EnemyAi : MonoBehaviour {
 
     private void KillEnemy() {
 
+        if(!isDead) {
+            ScoreTracker.INSTANCE.AddScore(enemyEntity.GetParamPOINTS());
+        }
+
         isDead = true;
         enemyAnimator.PlayDead();
         agent.isStopped = true;
         //Debug.Log("Enemy Killed!");
-        ScoreTracker.INSTANCE.AddScore(enemyEntity.GetParamPOINTS());
 
         //Randomly drops a health potion on death.
         ChanceDropHealthPotion();

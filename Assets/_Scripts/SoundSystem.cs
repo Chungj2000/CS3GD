@@ -22,9 +22,9 @@ public class SoundSystem : MonoBehaviour {
 
         if(INSTANCE == null) {
             INSTANCE = this;
-            //Debug.Log("GameMaster instance created.");
+            //Debug.Log("SoundSystem instance created.");
         } else {
-            Debug.LogError("More than one GameMaster instance created.");
+            Debug.LogError("More than one SoundSystem instance created.");
             Destroy(this);
             return;
         }

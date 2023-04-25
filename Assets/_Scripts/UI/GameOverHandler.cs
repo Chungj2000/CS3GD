@@ -29,10 +29,6 @@ public class GameOverHandler : MonoBehaviour {
         }
 
     }
-
-    private void Start() {
-        highScore = ScoreTracker.INSTANCE.GetScore();
-    }
     
     public void RetryClicked() {
         //Debug.Log("Retry clicked.");
@@ -61,8 +57,12 @@ public class GameOverHandler : MonoBehaviour {
 
         yourScore = ScoreTracker.INSTANCE.GetScore();
 
+        //LeaderboardSystem.INSTANCE.SetHighScore(ScoreTracker.INSTANCE.GetScore());
+
         //Update UI visual text for Scores.
         WriteHighScore();
+
+        //CheckLeaderboardScore();
 
         if(CheckNewHighScore()) {
             WriteNewHighScore();
@@ -83,12 +83,33 @@ public class GameOverHandler : MonoBehaviour {
         return false;
     }
 
+    //Check if the score should be added to the leaderboard.
+    private void CheckLeaderboardScore() {
+
+        List<int> leaderboardScores = LeaderboardSystem.INSTANCE.GetLeaderboard().GetLeaderboardScores();
+        bool newScore = false;
+
+        for(int i = 0; i < leaderboardScores.Count; i++) {
+            if(leaderboardScores[i] < yourScore && !newScore) {
+                newScore = true;
+            } else if (leaderboardScores[i] > yourScore && newScore){
+                LeaderboardSystem.INSTANCE.SetNewScoreIndex(i);
+                LeaderboardSystem.INSTANCE.SetHighScore(yourScore);
+            }
+        }
+    }
+    
+
     private void WriteNewHighScore() {
         yourScoreText.text = string.Format("NEW HIGH SCORE: " + yourScore.ToString("00000000"));
     }
 
     private void WriteYourScore() {
         yourScoreText.text = string.Format("YOUR SCORE: " + yourScore.ToString("00000000"));
+    }
+
+    public void SetHighScore(int score) {
+        highScore = score;
     }
 
 }

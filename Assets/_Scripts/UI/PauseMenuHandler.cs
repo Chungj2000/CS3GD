@@ -8,6 +8,7 @@ public class PauseMenuHandler : MonoBehaviour {
     public static PauseMenuHandler INSTANCE {get; private set;}
 
     private OptionsMenuHandler optionMenu;
+    private LeaderboardUI leaderboardUI;
     private const string mainMenu = "MainMenu";
     private bool isPauseActive;
 
@@ -30,6 +31,7 @@ public class PauseMenuHandler : MonoBehaviour {
 
     private void Start() {
         optionMenu = GetComponent<OptionsMenuHandler>();
+        leaderboardUI = LeaderboardSystem.INSTANCE.GetLeaderboardUI();
     }
 
     private void Update() {
@@ -43,6 +45,7 @@ public class PauseMenuHandler : MonoBehaviour {
 
     public void LeaderboardClicked() {
         Debug.Log("Load clicked.");
+        leaderboardUI.Show();
     }
 
     public void OptionsClicked() {
