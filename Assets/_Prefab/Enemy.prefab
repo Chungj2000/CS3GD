@@ -94,6 +94,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43253d4e4d66ba0458925c3a00ab5f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  sightRange: 15
+  patrolRadius: 15
+  breakingDistance: 1
   healthPotionPrefab: {fileID: 5993583679918301998, guid: c6ff9ad4cd9173b4d99551d2777221ab,
     type: 3}
 --- !u!114 &2305083248161547203

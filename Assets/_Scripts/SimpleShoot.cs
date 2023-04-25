@@ -45,7 +45,6 @@ public class SimpleShoot : MonoBehaviour
             //Debug.Log("Attack triggered.");
             //Calls animation on the gun that has the relevant animation events that will fire
             gunAnimator.SetTrigger("Fire");
-            SoundSystem.INSTANCE.PlaySFX(SoundSystem.INSTANCE.GetShootSFX(), shootSource);
         }
     }
 
@@ -66,6 +65,8 @@ public class SimpleShoot : MonoBehaviour
         //cancels if there's no bullet prefeb
         if (!bulletPrefab)
         { return; }
+
+        SoundSystem.INSTANCE.PlaySFX(SoundSystem.INSTANCE.GetShootSFX(), shootSource);
 
         // Create a bullet and add force on it in direction of the barrel
         GameObject bulletTransform = Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation);//.GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);

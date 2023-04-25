@@ -701,7 +701,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94328334}
-  m_LocalRotation: {x: 0.62572736, y: 0.00000015934981, z: -0.00000012782587, w: 0.7800419}
+  m_LocalRotation: {x: 0.6257274, y: -0.0000000051111506, z: 0.0000000041000003, w: 0.7800418}
   m_LocalPosition: {x: 0, y: 9, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2456,7 +2456,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.62572736, y: 0.00000015934981, z: -0.00000012782587, w: 0.7800419}
+  m_LocalRotation: {x: 0.6257274, y: -0.0000000051111506, z: 0.0000000041000003, w: 0.7800418}
   m_LocalPosition: {x: 0, y: 9, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5891,7 +5891,7 @@ MonoBehaviour:
   fullscreenToggle: {fileID: 617224012}
   resolutionDropdown: {fileID: 1269342489}
   optionsMenuCanvas: {fileID: 179763265}
-  volumeSlider: {fileID: 0}
+  volumeSlider: {fileID: 415878746}
 --- !u!82 &1063271122
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5901,7 +5901,8 @@ AudioSource:
   m_GameObject: {fileID: 1063271113}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 90b6f5f7488c2ba43897a24c2f307555,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 7a7101084fb523a42aa17d6891176992, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -6002,6 +6003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicLoop: {fileID: 8300000, guid: 7a7101084fb523a42aa17d6891176992, type: 3}
   gameOverSFX: {fileID: 8300000, guid: 59edaa5e5a93d8c49b876a3d43cb9918, type: 3}
+  shootSFX: {fileID: 8300000, guid: c82a32d31073616459b9826b6b9b9a45, type: 3}
   audioMixer: {fileID: 24100000, guid: 90b6f5f7488c2ba43897a24c2f307555, type: 2}
 --- !u!1 &1095170870
 GameObject:
@@ -11098,6 +11100,11 @@ PrefabInstance:
         type: 3}
       propertyPath: paramATK_RANGE
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893939738599170932, guid: 0867755c7a1d1534da1c47283f3d431c,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8112687821077699866, guid: 0867755c7a1d1534da1c47283f3d431c,
         type: 3}
