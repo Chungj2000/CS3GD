@@ -29,7 +29,7 @@ public class Player : CharacterEntity {
 
     public override void TakeDamage(float enemyParamATK) {
 
-        paramHP -= CalculateDamage(enemyParamATK);
+        paramHP -= Mathf.Round((CalculateDamage(enemyParamATK) * 100f) / 100f);
 
         //Debug.Log("Player has taken " + CalculateDamage(enemyParamATK) + " damage.");
 

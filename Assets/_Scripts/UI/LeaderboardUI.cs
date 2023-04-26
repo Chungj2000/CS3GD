@@ -19,11 +19,11 @@ public class LeaderboardUI : MonoBehaviour {
         Hide();
 
         //List rankings in descending order.
-        leaderboardRanks = new TextMeshProUGUI[]{fifthPlace, 
-                                                 fourthPlace, 
-                                                 thirdPlace, 
+        leaderboardRanks = new TextMeshProUGUI[]{firstPlace,
                                                  secondPlace, 
-                                                 firstPlace};
+                                                 thirdPlace, 
+                                                 fourthPlace, 
+                                                 fifthPlace};
     }
     
     public void PopulateLeaderboard(List<int> leaderboardScores) {

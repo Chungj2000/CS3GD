@@ -81,7 +81,7 @@ public class PlayerParameterUI : MonoBehaviour {
 
     //Used only to update when health value is changed from taking, or increasing health.
     public void UpdatePlayerParameterUI_Health() {
-        playerHP = Player.INSTANCE.GetParamHP();
+        playerHP = Mathf.Round((Player.INSTANCE.GetParamHP() * 100f) / 100f);
         textParamHP.text = playerHP.ToString();
     }
 
@@ -171,11 +171,11 @@ public class PlayerParameterUI : MonoBehaviour {
 
         if(playerParam < ((playerParam + itemParameters[parameterModifierKey]) * itemParameters[parameterMultiplierKey])) {
             //If item increases Player parameter.
-            changeValue.text = string.Format("[+" + (((playerParam + itemParameters[parameterModifierKey]) * itemParameters[parameterMultiplierKey]) - playerParam) +  "]");
+            changeValue.text = string.Format("[+" + Mathf.Round(((((playerParam + itemParameters[parameterModifierKey]) * itemParameters[parameterMultiplierKey]) - playerParam) * 100f) / 100f) +  "]");
             changeValue.color = changeValueIncrease;
         } else {
             //If item decreases Player parameter. Value should already have a '-'.
-            changeValue.text = string.Format("[" + (((playerParam + itemParameters[parameterModifierKey]) * itemParameters[parameterMultiplierKey]) - playerParam) +  "]");
+            changeValue.text = string.Format("[" + Mathf.Round(((((playerParam + itemParameters[parameterModifierKey]) * itemParameters[parameterMultiplierKey]) - playerParam) * 100f) / 100f) +  "]");
             changeValue.color = changeValueDecrease;
         } 
 
@@ -186,11 +186,11 @@ public class PlayerParameterUI : MonoBehaviour {
 
         if(playerParam < playerParam + itemParameters[parameterKey]) {
             //If item increases Player parameter.
-            changeValue.text = string.Format("[+" + itemParameters[parameterKey] +  "]");
+            changeValue.text = string.Format("[+" + Mathf.Round((itemParameters[parameterKey] * 100f) / 100f) +  "]");
             changeValue.color = changeValueIncrease;
         } else {
             //If item decreases Player parameter. Value should already have a '-'.
-            changeValue.text = string.Format("[" + itemParameters[parameterKey] +  "]");
+            changeValue.text = string.Format("[" + Mathf.Round((itemParameters[parameterKey] * 100f) / 100f) +  "]");
             changeValue.color = changeValueDecrease;
         } 
 
@@ -201,11 +201,11 @@ public class PlayerParameterUI : MonoBehaviour {
 
         if(playerParam < playerParam * itemParameters[parameterKey]) {
             //If item increases Player parameter.
-            changeValue.text = string.Format("[+" + ((playerParam * itemParameters[parameterKey]) - playerParam) +  "]");
+            changeValue.text = string.Format("[+" + Mathf.Round((((playerParam * itemParameters[parameterKey]) - playerParam) * 100f) / 100f) +  "]");
             changeValue.color = changeValueIncrease;
         } else {
             //If item decreases Player parameter. Value should already have a '-'.
-            changeValue.text = string.Format("[" + ((playerParam * itemParameters[parameterKey]) - playerParam) +  "]");
+            changeValue.text = string.Format("[" + Mathf.Round((((playerParam * itemParameters[parameterKey]) - playerParam) * 100f) / 100f) +  "]");
             changeValue.color = changeValueDecrease;
         }
 
@@ -216,11 +216,11 @@ public class PlayerParameterUI : MonoBehaviour {
 
         if(playerHP < playerHP + (playerMAX_HP * itemParameters[recoveryHP])) {
             //If item increases Player parameter.
-            changeValue.text = string.Format("[+" + (playerMAX_HP * itemParameters[recoveryHP]) +  "]");
+            changeValue.text = string.Format("[+" + Mathf.Round(((playerMAX_HP * itemParameters[recoveryHP]) * 100f) / 100f) +  "]");
             changeValue.color = changeValueIncrease;
         } else {
             //If item decreases Player parameter. Value should already have a '-'.
-            changeValue.text = string.Format("[" + (playerMAX_HP * itemParameters[recoveryHP]) +  "]");
+            changeValue.text = string.Format("[" + Mathf.Round(((playerMAX_HP * itemParameters[recoveryHP]) * 100f) / 100f) +  "]");
             changeValue.color = changeValueDecrease;
         }
 

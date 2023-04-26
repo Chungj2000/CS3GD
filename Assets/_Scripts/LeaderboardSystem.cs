@@ -4,11 +4,19 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System;
 using System.IO;
+using System.Linq;
 
 public class ScoresResult {
     public int Scores;
     public string code;
     public string message;
+}
+
+public class SortedKeysInDescending : IComparer<int> {
+    public int Compare(int x, int y) { 
+        return -x.CompareTo(y); 
+    }
+
 }
 
 public class LeaderboardSystem : MonoBehaviour {
@@ -35,6 +43,7 @@ public class LeaderboardSystem : MonoBehaviour {
     private SortedDictionary<int, string> scoreByID;
     private string backendURL;
     private bool leaderboardInitialised = false;
+    private bool newScoreSaved = false;
     private int index = 0;
     private int newScoreIndex;
 
@@ -55,7 +64,7 @@ public class LeaderboardSystem : MonoBehaviour {
     }
 
     private void Start() {
-        scoreByID = new SortedDictionary<int, string>();
+        scoreByID = new SortedDictionary<int, string>(new SortedKeysInDescending());
     }
 
     public void GetHighScore() {
@@ -111,7 +120,8 @@ public class LeaderboardSystem : MonoBehaviour {
         //Debug.Log("Score is: " + scoresData.Scores);
 
         InitiateLeaderboard(scoresData.Scores);
-        scoreByID.Add(scoresData.Scores, scoresID[index]);
+
+        //For Testing:
         //ReturnSortedDictionary();
 
         if (!string.IsNullOrEmpty(scoresData.code)) {
@@ -122,14 +132,18 @@ public class LeaderboardSystem : MonoBehaviour {
     //Populate the leaderboard with Backend Scores data.
     private void InitiateLeaderboard(int score) {
         if(!leaderboardInitialised) {
+
             leaderboard.AddScore(score);
+            scoreByID.Add(score, scoresID[index]);
 
             if(index == scoresID.Length - 1) {
                 leaderboardInitialised = true;
                 Debug.Log("Leaderboard initialised.");
 
+                ReturnSortedDictionary();
+
                 //Set the current highscore to beat.
-                GameOverHandler.INSTANCE.SetHighScore(leaderboard.GetLeaderboardScores()[index]);
+                GameOverHandler.INSTANCE.SetHighScore(leaderboard.GetLeaderboardScores()[0]);
 
                 //Update visuals.
                 leaderboardUI.PopulateLeaderboard(leaderboard.GetLeaderboardScores());
@@ -185,24 +199,29 @@ public class LeaderboardSystem : MonoBehaviour {
         }
     }
 
+    //Replace leaderboard scores with the new score.
     private IEnumerator CR_SetHighScore(int score) {
 
-        //List<int> savedScores = leaderboard.GetLeaderboardScores();
-        //currentScore
+        string data;
+        int oldScore = 0;
 
-        //foreach(int key in scoreByID.Keys) {
+        //Identify every score lower than the position of the new score.
+        for(int x = newScoreIndex; x < leaderboard.GetLeaderboardScores().Count; x++) {
 
-            //if(newScoreIndex == 0) {
-            //    break;
-            //}
+            if(!newScoreSaved) {
+                //Set the new score in the leaderboard.
+                data = JsonUtility.ToJson(new ScoresResult { Scores = score});
+                newScoreSaved = true;
+            } else {
+                //Set the old scores below the new one in the backendless leaderboard.
+                data = JsonUtility.ToJson(new ScoresResult { Scores = oldScore });
+            }
 
-            //newScoreIndex -= 1;
+            //Save the old score before it gets overwritten. So we can overwrite the score below.
+            oldScore = leaderboard.GetLeaderboardScores()[x];
 
-            //Populate URL with variables.
-            backendURL = ProcessSetURL();
-
-            //Create data string for data that is being sent
-            string data = JsonUtility.ToJson(new ScoresResult { Scores = score });
+            //Populate URL with a new score using a reversed sorted dictionary
+            backendURL = ProcessSetURL() + scoreByID.ElementAt(x).Value;
 
             //Pass URL and data
             UnityWebRequest webRequest = UnityWebRequest.Put(backendURL, data); 
@@ -213,8 +232,8 @@ public class LeaderboardSystem : MonoBehaviour {
             yield return webRequest.SendWebRequest();
 
             CheckForWebErrors(webRequest);
-
-        //}
+        
+        }
 
     }
 

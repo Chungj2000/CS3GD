@@ -52,6 +52,8 @@ public abstract class CharacterEntity : MonoBehaviour {
 
         SetHealthLimit();
 
+        RoundToTwoDecimals();
+
     }
 
     //Multiply parameters by given values.
@@ -82,6 +84,8 @@ public abstract class CharacterEntity : MonoBehaviour {
 
         SetHealthLimit();
 
+        RoundToTwoDecimals();
+
     }
 
     //Increases health of the entity by a fixed percentage of their MAX_HP.
@@ -110,6 +114,20 @@ public abstract class CharacterEntity : MonoBehaviour {
         paramHP = Mathf.Clamp(paramHP, 0f, paramMAX_HP);
         //Debug.Log("New HP limit at: " + paramMAX_HP);
     }
+
+    //Round all parameters to 2dp.
+    protected void RoundToTwoDecimals() {
+        paramMAX_HP = Mathf.Round(paramMAX_HP * 100f) / 100f;
+        paramHP = Mathf.Round(paramHP * 100f) / 100f;
+        paramATK = Mathf.Round(paramATK * 100f) / 100f;
+        paramATK_SPD = Mathf.Round(paramATK_SPD * 100f) / 100f;
+        paramATK_RANGE = Mathf.Round(paramATK_RANGE * 100f) / 100f;
+        paramMOVE_SPD = Mathf.Round(paramMOVE_SPD * 100f) / 100f;
+        paramDEF = Mathf.Round(paramDEF * 100f) / 100f;
+
+        //Debug.Log("Parameters rounded.");
+    }
+
 
     //Parameter Getters.
 

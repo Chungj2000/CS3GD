@@ -14,6 +14,7 @@ public class GameOverHandler : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI highScoreText;
     [SerializeField] private TextMeshProUGUI yourScoreText;
     private int highScore, yourScore;
+    private bool checkedLeaderboardScore = false;
 
     private void Awake() {
 
@@ -62,7 +63,7 @@ public class GameOverHandler : MonoBehaviour {
         //Update UI visual text for Scores.
         WriteHighScore();
 
-        //CheckLeaderboardScore();
+        CheckLeaderboardScore();
 
         if(CheckNewHighScore()) {
             WriteNewHighScore();
@@ -86,16 +87,26 @@ public class GameOverHandler : MonoBehaviour {
     //Check if the score should be added to the leaderboard.
     private void CheckLeaderboardScore() {
 
+        if(checkedLeaderboardScore) {
+            return;
+        }
+
         List<int> leaderboardScores = LeaderboardSystem.INSTANCE.GetLeaderboard().GetLeaderboardScores();
-        bool newScore = false;
 
         for(int i = 0; i < leaderboardScores.Count; i++) {
-            if(leaderboardScores[i] < yourScore && !newScore) {
-                newScore = true;
-            } else if (leaderboardScores[i] > yourScore && newScore){
+
+            if(leaderboardScores[i] < yourScore) {
+
+                Debug.Log("Index at: " + i);
+                checkedLeaderboardScore = true;
                 LeaderboardSystem.INSTANCE.SetNewScoreIndex(i);
                 LeaderboardSystem.INSTANCE.SetHighScore(yourScore);
+                break;
+
+            } else {
+                Debug.Log("New index: " + i);
             }
+
         }
     }
     

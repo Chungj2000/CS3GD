@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Leaderboard : MonoBehaviour {
     
@@ -16,15 +17,16 @@ public class Leaderboard : MonoBehaviour {
         SortLeaderboard();
     }
 
-    //Sort in ascending order.
+    //Sort in descending order.
     private void SortLeaderboard() {
         leaderboardScores.Sort();
+        leaderboardScores.Reverse();
         
-        /**
+    
         foreach(int score in leaderboardScores) {
             Debug.Log(score);
         }
-        **/
+    
     }
 
     public List<int> GetLeaderboardScores() {
