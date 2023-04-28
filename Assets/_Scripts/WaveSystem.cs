@@ -108,6 +108,7 @@ public class WaveSystem : MonoBehaviour {
 
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private Vector2 spawnRegion;
+        [SerializeField] private LayerMask outOfBounds;
         private List<GameObject> enemies = new List<GameObject>();
         private GameObject enemyEntity;
         private bool waveOver;
@@ -129,14 +130,22 @@ public class WaveSystem : MonoBehaviour {
 
         public void SpawnEnemy() {
 
+            Vector3 randomSpawnLocation;
+
             waveOver = false;
 
-            //Generate a random valid position on the map.
-            Vector3 randomSpawnLocation = new Vector3(
-                UnityEngine.Random.Range(-spawnRegion.x, spawnRegion.x),
-                0f,
-                UnityEngine.Random.Range(-spawnRegion.y, spawnRegion.y)
-            );
+            //Ensure enemies do not spawn inside terrain prefabs.
+            do {
+
+                //Generate a random valid position on the map.
+                randomSpawnLocation = new Vector3(
+                    UnityEngine.Random.Range(-spawnRegion.x, spawnRegion.x),
+                    0f,
+                    UnityEngine.Random.Range(-spawnRegion.y, spawnRegion.y)
+                );
+            
+
+            } while(Physics2D.OverlapCircle(new Vector3(randomSpawnLocation.x, randomSpawnLocation.y, randomSpawnLocation.z), 1f, outOfBounds));
 
             //Create the enemy at the random position and add it to the list of enemies.
             enemyEntity = Instantiate(enemyPrefab, randomSpawnLocation, Quaternion.identity);

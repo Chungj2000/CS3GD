@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class MainMenuHandler : MonoBehaviour {
     
     private OptionsMenuHandler optionMenu;
+    private LeaderboardUI leaderboardMenu;
     private const string newGame = "GameScene";
 
     private void Start() {
         optionMenu = GetComponent<OptionsMenuHandler>();
+        leaderboardMenu = GetComponent<LeaderboardUI>();
     }
 
     public void NewGameClicked() {
@@ -19,6 +21,8 @@ public class MainMenuHandler : MonoBehaviour {
 
     public void LeaderboardClicked() {
         Debug.Log("Leaderboard clicked.");
+        //LeaderboardSystem.INSTANCE.SetMainMenu();
+        //leaderboardMenu.Show();
     }
 
     public void OptionsClicked() {
