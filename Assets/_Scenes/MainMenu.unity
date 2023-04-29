@@ -4372,6 +4372,9 @@ GameObject:
   - component: {fileID: 1367300345}
   - component: {fileID: 1367300344}
   - component: {fileID: 1367300348}
+  - component: {fileID: 1367300352}
+  - component: {fileID: 1367300351}
+  - component: {fileID: 1367300350}
   - component: {fileID: 1367300349}
   m_Layer: 5
   m_Name: UI
@@ -4492,6 +4495,48 @@ MonoBehaviour:
   resolutionDropdown: {fileID: 1153546031}
   optionsMenuCanvas: {fileID: 1189689468}
   volumeSlider: {fileID: 566990852}
+--- !u!114 &1367300350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367300343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4220a5a338458d443b25063f01a0ef7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1367300351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367300343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa996dff1844b7c4bada74d3121a9201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1367300352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367300343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7cf725d7ae779d4face43cc6358faee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leaderboardCanvas: {fileID: 2131384082}
+  firstPlace: {fileID: 1535231419}
+  secondPlace: {fileID: 442899058}
+  thirdPlace: {fileID: 894077007}
+  fourthPlace: {fileID: 459451564}
+  fifthPlace: {fileID: 1765081729}
 --- !u!1 &1370872999
 GameObject:
   m_ObjectHideFlags: 0
@@ -5609,7 +5654,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1367300352}
         m_TargetAssemblyTypeName: LeaderboardUI, Assembly-CSharp
         m_MethodName: CloseClicked
         m_Mode: 1
@@ -6479,7 +6524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2131384079
 RectTransform:
   m_ObjectHideFlags: 0

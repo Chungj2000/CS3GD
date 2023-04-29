@@ -30,6 +30,10 @@ public class GameOverHandler : MonoBehaviour {
         }
 
     }
+
+    private void Start() {
+        highScore = PlayerPrefs.GetInt("highScore");
+    }
     
     public void RetryClicked() {
         //Debug.Log("Retry clicked.");

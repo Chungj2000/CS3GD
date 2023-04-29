@@ -21,8 +21,7 @@ public class MainMenuHandler : MonoBehaviour {
 
     public void LeaderboardClicked() {
         Debug.Log("Leaderboard clicked.");
-        //LeaderboardSystem.INSTANCE.SetMainMenu();
-        //leaderboardMenu.Show();
+        leaderboardMenu.Show();
     }
 
     public void OptionsClicked() {

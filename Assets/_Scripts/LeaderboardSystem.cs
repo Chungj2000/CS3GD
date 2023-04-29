@@ -44,7 +44,6 @@ public class LeaderboardSystem : MonoBehaviour {
     private string backendURL;
     private bool leaderboardInitialised = false;
     private bool newScoreSaved = false;
-    private bool mainMenu = false;
     private int index = 0;
     private int newScoreIndex;
 
@@ -144,7 +143,8 @@ public class LeaderboardSystem : MonoBehaviour {
                 ReturnSortedDictionary();
                 
                 //Set the current highscore to beat.
-                GameOverHandler.INSTANCE.SetHighScore(leaderboard.GetLeaderboardScores()[0]);
+                PlayerPrefs.SetInt("highScore", leaderboard.GetLeaderboardScores()[0]);
+                //GameOverHandler.INSTANCE.SetHighScore(leaderboard.GetLeaderboardScores()[0]);
 
                 //Update visuals.
                 leaderboardUI.PopulateLeaderboard(leaderboard.GetLeaderboardScores());
@@ -262,10 +262,6 @@ public class LeaderboardSystem : MonoBehaviour {
 
     public void SetNewScoreIndex(int index) {
         newScoreIndex = index;
-    }
-
-    public void SetMainMenu() {
-        mainMenu = true;
     }
 
     public void ReturnSortedDictionary() {
