@@ -15,22 +15,22 @@ public class MainMenuHandler : MonoBehaviour {
     }
 
     public void NewGameClicked() {
-        Debug.Log("New Game clicked.");
+        //Debug.Log("New Game clicked.");
         SceneManager.LoadSceneAsync(newGame);
     }
 
     public void LeaderboardClicked() {
-        Debug.Log("Leaderboard clicked.");
+        //Debug.Log("Leaderboard clicked.");
         leaderboardMenu.Show();
     }
 
     public void OptionsClicked() {
-        Debug.Log("Options clicked.");
+        //Debug.Log("Options clicked.");
         optionMenu.ShowOptions();
     }
 
     public void QuitClicked() {
-        Debug.Log("Quit clicked.");
+        //Debug.Log("Quit clicked.");
         Application.Quit();
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 828257064538889361}
   - component: {fileID: 794368096899040013}
   - component: {fileID: 803269188491125509}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spiked Obstacle
   m_TagString: OutOfBounds
   m_Icon: {fileID: 0}

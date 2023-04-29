@@ -30,6 +30,11 @@ public class ProjectileHandler : MonoBehaviour {
         Enemy enemy = collider.GetComponent<Enemy>();
         if (enemy != null) {
             enemy.TakeDamage(Player.INSTANCE.GetParamATK());
+
+            //Bullet hit register SFX.
+            SoundSystem.INSTANCE.PlaySFX(SoundSystem.INSTANCE.GetBulletImpactSFX(), 
+                                         collider.gameObject.GetComponent<EnemyAi>().GetAudioSource());
+
             Destroy(gameObject);
         }
     }

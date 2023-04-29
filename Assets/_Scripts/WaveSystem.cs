@@ -134,7 +134,7 @@ public class WaveSystem : MonoBehaviour {
 
             waveOver = false;
 
-            //Ensure enemies do not spawn inside terrain prefabs.
+            //Prevent enemies from spawning inside terrain prefabs.
             do {
 
                 //Generate a random valid position on the map.

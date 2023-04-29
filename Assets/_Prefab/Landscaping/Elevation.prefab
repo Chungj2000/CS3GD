@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 380425718862947959}
   - component: {fileID: 374144303528380115}
   - component: {fileID: 367222582365904213}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Elevation
   m_TagString: OutOfBounds
   m_Icon: {fileID: 0}

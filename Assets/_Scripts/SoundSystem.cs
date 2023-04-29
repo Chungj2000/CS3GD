@@ -7,10 +7,15 @@ public class SoundSystem : MonoBehaviour {
 
     public static SoundSystem INSTANCE {get; private set;}
 
+    [Header("Sound Collection")]
     [SerializeField] private AudioClip musicLoop;
     [SerializeField] private AudioClip gameOverSFX;
     [SerializeField] private AudioClip shootSFX;
+    [SerializeField] private AudioClip zombieGrowlSFX;
+    [SerializeField] private AudioClip trapTriggerSFX;
+    [SerializeField] private AudioClip bulletImpactSFX;
 
+    [Header("Audio Settings")]
     [SerializeField] private AudioMixer audioMixer;
     
     private const string masterVolume = "MasterVolume";
@@ -61,6 +66,18 @@ public class SoundSystem : MonoBehaviour {
 
     public AudioClip GetShootSFX() {
         return shootSFX;
+    }
+
+    public AudioClip GetZombieGrowlSFX() {
+        return zombieGrowlSFX;
+    }
+
+    public AudioClip GetTrapTriggerSFX() {
+        return trapTriggerSFX;
+    }
+
+    public AudioClip GetBulletImpactSFX() {
+        return bulletImpactSFX;
     }
 
     public AudioSource GetAudioSourceSFX() {

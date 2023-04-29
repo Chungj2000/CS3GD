@@ -22,10 +22,11 @@ public class Leaderboard : MonoBehaviour {
         leaderboardScores.Sort();
         leaderboardScores.Reverse();
         
-    
+        /**
         foreach(int score in leaderboardScores) {
             Debug.Log(score);
         }
+        **/
     
     }
 

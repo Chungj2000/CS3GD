@@ -12,6 +12,7 @@ public class ScoresResult {
     public string message;
 }
 
+//Descending order sort.
 public class SortedKeysInDescending : IComparer<int> {
     public int Compare(int x, int y) { 
         return -x.CompareTo(y); 
@@ -140,7 +141,7 @@ public class LeaderboardSystem : MonoBehaviour {
                 leaderboardInitialised = true;
                 Debug.Log("Leaderboard initialised.");
 
-                ReturnSortedDictionary();
+                //ReturnSortedDictionary();
                 
                 //Set the current highscore to beat.
                 PlayerPrefs.SetInt("highScore", leaderboard.GetLeaderboardScores()[0]);

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3243919341486233533}
   - component: {fileID: 3270616818995624401}
   - component: {fileID: 3262325361406015877}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Slab
   m_TagString: OutOfBounds
   m_Icon: {fileID: 0}

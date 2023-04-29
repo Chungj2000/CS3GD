@@ -8,6 +8,7 @@ public class EnemyAi : MonoBehaviour {
     private GameObject playerEntity;
     private Enemy enemyEntity;
     private EnemyAnimator enemyAnimator;
+    private AudioSource audioSource;
     private NavMeshAgent agent;
 
     [SerializeField] private LayerMask floorLayer;
@@ -16,16 +17,19 @@ public class EnemyAi : MonoBehaviour {
     [SerializeField] private float breakingDistance = 1f;
 
     private Vector3 waypoint;
-    private bool playerInSightRange, playerInAttackRange, hasAttacked, waypointSet, isDead;
+    private bool playerInSightRange, playerInAttackRange, hasAttacked, waypointSet, isDead, canGrowl;
+    private const int sfxCooldown = 30;
 
     [SerializeField] private GameObject healthPotionPrefab;
     
     private void Start() {
 
         isDead = false;
+        canGrowl = true;
         agent = GetComponent<NavMeshAgent>();
 
         enemyAnimator = GetComponent<EnemyAnimator>();
+        audioSource = GetComponent<AudioSource>();
         enemyEntity = GetComponent<Enemy>();
         playerEntity = InputManager.INSTANCE.GetPlayer();
 
@@ -102,6 +106,17 @@ public class EnemyAi : MonoBehaviour {
     private void ChasePlayer() {
         //If player in sight but not attack range, move enemy to player.
         if(playerInSightRange && !playerInAttackRange) {
+
+            //Prevent SFX from being played endless due to Update.
+            if(canGrowl) {
+                //Debug.Log("A zombie is growling at the player, it is nearby!");
+
+                canGrowl = false;
+                //Play zombie growl SFX when Player is within sight range.
+                SoundSystem.INSTANCE.PlaySFX(SoundSystem.INSTANCE.GetZombieGrowlSFX(), audioSource);
+                StartCoroutine(CooldownSFX());
+            }
+
             //Debug.Log("Enemy is chasing.");
             MoveToPlayer();
         }
@@ -109,6 +124,12 @@ public class EnemyAi : MonoBehaviour {
 
     private void MoveToPlayer() {
         agent.SetDestination(playerEntity.transform.position);
+    }
+
+    IEnumerator CooldownSFX() {
+        //Debug.Log("Growl SFX on cooldown.");
+        yield return new WaitForSeconds(sfxCooldown);
+        canGrowl = true;
     }
 
     private void ReadyAttack() {
@@ -207,6 +228,10 @@ public class EnemyAi : MonoBehaviour {
 
     public NavMeshAgent GetAgent() {
         return agent;
+    }
+
+    public AudioSource GetAudioSource() {
+        return audioSource;
     }
 
 }

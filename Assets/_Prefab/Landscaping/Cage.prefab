@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4814609885786315914}
   - component: {fileID: 4803877164980063830}
   - component: {fileID: 4795343791088004126}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cage
   m_TagString: OutOfBounds
   m_Icon: {fileID: 0}
