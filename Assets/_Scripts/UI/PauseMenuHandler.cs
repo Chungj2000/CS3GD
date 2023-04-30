@@ -10,7 +10,9 @@ public class PauseMenuHandler : MonoBehaviour {
     private OptionsMenuHandler optionMenu;
     private LeaderboardUI leaderboardUI;
     private const string mainMenu = "MainMenu";
+    private const string gameScene = "GameScene";
     private bool isPauseActive;
+    private bool isLoadedGame = true;
 
     [SerializeField] private Canvas pauseOverlayUI;
 
@@ -43,18 +45,35 @@ public class PauseMenuHandler : MonoBehaviour {
         ToggleIsPauseActive();
     }
 
+    public void SaveClicked() {
+        Debug.Log("Save clicked.");
+        SaveLoadSystem.INSTANCE.SaveGame();
+        ToggleIsPauseActive();
+    }
+
+    public void LoadClicked() {
+        //Debug.Log("Load clicked.");
+
+        //Resume game time scale.
+        Time.timeScale = 1f;
+
+        //Create the scene using the save data so wave, score, and time is correct.
+        PlayerPrefs.SetInt("loadGame", isLoadedGame ? 1 : 0);
+        SceneManager.LoadSceneAsync(gameScene);
+    }
+
     public void LeaderboardClicked() {
-        Debug.Log("Load clicked.");
+        //Debug.Log("Load clicked.");
         leaderboardUI.Show();
     }
 
     public void OptionsClicked() {
-        Debug.Log("Options clicked.");
+        //Debug.Log("Options clicked.");
         optionMenu.ShowOptions();
     }
 
     public void MainMenuClicked() {
-        Debug.Log("Main Menu clicked.");
+        //Debug.Log("Main Menu clicked.");
 
         //If currently paused, resume timeScale so session resumes normally before main menu transition.
         if(isPauseActive) {

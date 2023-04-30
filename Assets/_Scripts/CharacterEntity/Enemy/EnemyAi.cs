@@ -170,7 +170,7 @@ public class EnemyAi : MonoBehaviour {
     public void CheckHealth() {
 
         //If enemy health is below 0, kill the enemy.
-        if(enemyEntity.GetParamHP() <= 0) {
+        if(enemyEntity.GetParamHP() <= 0 && !isDead) {
 
             KillEnemy();
             Destroy(GetComponent<BoxCollider>());

@@ -56,7 +56,7 @@ public class ItemHandler : MonoBehaviour {
     public void DisplayInteractionNotifications() {
 
         
-        NotificationHandler.INSTANCE.SetInteractNotification(interactionMessage);
+        NotificationHandler.INSTANCE.SetItemInteractNotification(interactionMessage);
 
         NotificationHandler.INSTANCE.SetItemNotification(
             descriptions["itemName"],

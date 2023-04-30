@@ -128,7 +128,6 @@ public abstract class CharacterEntity : MonoBehaviour {
         //Debug.Log("Parameters rounded.");
     }
 
-
     //Parameter Getters.
 
     public float GetParamHP() {
@@ -162,6 +161,42 @@ public abstract class CharacterEntity : MonoBehaviour {
 
     public float GetParamDEF() {
         return paramDEF;
+    }
+
+    //Setters for loading a saved game (state overwrite).
+    public void SetTranform(Vector3 position, Quaternion rotation) {
+        this.gameObject.transform.position = position;
+
+        //Rotation breaks Cinemachine Camera
+        //this.gameObject.transform.rotation = rotation;
+    }
+
+    public void SetParamMAX_HP(float playerMAX_HP) {
+        paramMAX_HP = playerMAX_HP;
+    }
+
+    public void SetParamHP(float playerHP) {
+        paramHP = playerHP;
+    }
+
+    public void SetParamATK(float playerATK) {
+        paramATK = playerATK;
+    }
+
+    public void SetParamATK_SPD(float playerATK_SPD) {
+        paramATK_SPD = playerATK_SPD;
+    }
+
+    public void SetParamATK_RANGE(float playerATK_RANGE) {
+        paramATK_RANGE = playerATK_RANGE;
+    }
+
+    public void SetParamMOVE_SPD(float playerMOVE_SPD) {
+        paramMOVE_SPD = playerMOVE_SPD;
+    }
+
+    public void SetParamDEF(float playerDEF) {
+        paramDEF = playerDEF;
     }
 
 }

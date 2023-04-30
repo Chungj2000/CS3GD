@@ -131,7 +131,7 @@ public class PlayerItemHandler : MonoBehaviour {
 
     private void ConcealNotifications() {
         //Remove interaction & item messages.
-        NotificationHandler.INSTANCE.ClearInteractNotification();
+        NotificationHandler.INSTANCE.ClearItemInteractNotification();
 
         HideItemOverlay();
         NotificationHandler.INSTANCE.ClearItemNotification();

@@ -31,7 +31,7 @@ public class WaveSystem : MonoBehaviour {
             //Debug.Log("WaveSystem instance created.");
         } else {
             //Debug.LogError("More than one WaveSystem instance created.");
-            Destroy(gameObject);
+            Destroy(this);
             return;
         }
     
@@ -102,6 +102,15 @@ public class WaveSystem : MonoBehaviour {
     }
 
     public int GetEnemyCount() => wave.GetEnemyCount();
+
+    public int GetWaveCount() {
+        return waveCounter;
+    }
+
+    public void SetWaveCount(int waveCount) {
+        waveCounter = waveCount;
+        Debug.Log("Wave set to: " + waveCounter);
+    }
 
     [System.Serializable]
     private class Wave {

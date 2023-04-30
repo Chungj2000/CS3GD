@@ -18,7 +18,7 @@ public class ScoreTracker : MonoBehaviour {
             //Debug.Log("InputManager instance created.");
         } else {
             //Debug.LogError("More than one InputManager instance created.");
-            Destroy(gameObject);
+            Destroy(this);
             return;
         }
     
@@ -26,6 +26,12 @@ public class ScoreTracker : MonoBehaviour {
 
     public int GetScore() {
         return currentScore;
+    }
+
+    public void SetScore(int score) {
+        currentScore = score;
+        UpdateScoreText(score);
+        Debug.Log("Score set to: " + currentScore);
     }
 
     public void AddScore(int addScoreValue) {

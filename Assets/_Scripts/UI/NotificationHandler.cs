@@ -10,6 +10,7 @@ public class NotificationHandler : MonoBehaviour {
     [Header("GameOverlayUI Fields")]
     [SerializeField] private TextMeshProUGUI waveNotificationUI;
     [SerializeField] private TextMeshProUGUI interactNotificationUI;
+    [SerializeField] private TextMeshProUGUI itemInteractNotificationUI;
 
     [Header("ItemOverlayUI Fields")]
     [SerializeField] private TextMeshProUGUI itemNameNotificationUI;
@@ -40,6 +41,14 @@ public class NotificationHandler : MonoBehaviour {
 
     public void ClearInteractNotification() {
         interactNotificationUI.text = "";
+    }
+
+    public void SetItemInteractNotification(string notificationMessage) {
+        itemInteractNotificationUI.text = notificationMessage;
+    }
+
+    public void ClearItemInteractNotification() {
+        itemInteractNotificationUI.text = "";
     }
 
     public void SetItemNotification(string itemName, string itemDesc) {

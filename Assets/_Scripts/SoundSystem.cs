@@ -14,6 +14,7 @@ public class SoundSystem : MonoBehaviour {
     [SerializeField] private AudioClip zombieGrowlSFX;
     [SerializeField] private AudioClip trapTriggerSFX;
     [SerializeField] private AudioClip bulletImpactSFX;
+    [SerializeField] private AudioClip doorSFX;
 
     [Header("Audio Settings")]
     [SerializeField] private AudioMixer audioMixer;
@@ -78,6 +79,10 @@ public class SoundSystem : MonoBehaviour {
 
     public AudioClip GetBulletImpactSFX() {
         return bulletImpactSFX;
+    }
+
+    public AudioClip GetDoorSFX() {
+        return doorSFX;
     }
 
     public AudioSource GetAudioSourceSFX() {

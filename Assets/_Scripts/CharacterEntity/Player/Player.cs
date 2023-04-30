@@ -79,9 +79,13 @@ public class Player : CharacterEntity {
             OnDamaged?.Invoke(this, EventArgs.Empty);
         } 
 
+        UpdatePlayerParameterUI();
+        
+    }
+
+    public void UpdatePlayerParameterUI() {
         //Update PlayerParameterUI values with new parameters.
         PlayerParameterUI.INSTANCE.SetPlayerParameterUI();
-        
     }
 
 }

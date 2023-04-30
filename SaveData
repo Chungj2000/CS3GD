@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<SaveState xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <waveCount>3</waveCount>
+  <scoreCount>110</scoreCount>
+  <playTimeCount>133.97966</playTimeCount>
+  <playerPosition>
+    <x>-12.021224</x>
+    <y>0.629436553</y>
+    <z>17.5972252</z>
+  </playerPosition>
+  <playerRotation>
+    <x>-0</x>
+    <y>0.0691711456</y>
+    <z>-0</z>
+    <w>0.997604847</w>
+    <eulerAngles>
+      <x>-0</x>
+      <y>7.93276358</y>
+      <z>-0</z>
+    </eulerAngles>
+  </playerRotation>
+  <playerMAX_HP>400</playerMAX_HP>
+  <playerHP>96.2</playerHP>
+  <playerATK>105</playerATK>
+  <playerATK_SPD>1</playerATK_SPD>
+  <playerATK_RANGE>15</playerATK_RANGE>
+  <playerMOVE_SPD>4</playerMOVE_SPD>
+  <playerDEF>5</playerDEF>
+</SaveState>

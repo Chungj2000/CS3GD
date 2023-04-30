@@ -21,7 +21,7 @@ public class SpikeTrap : MonoBehaviour {
     //When a Player enters the collider.
     private void OnTriggerEnter(Collider collider) {
 
-        Debug.Log("Trap collider triggered.");
+        //Debug.Log("Trap collider triggered.");
 
         //Trap can only again trigger after a cooldown, and only on the Player.
         if(!trapOnCooldown && collider.gameObject.CompareTag(playerTag)) {
@@ -29,7 +29,7 @@ public class SpikeTrap : MonoBehaviour {
             //Damage = 20% of Player's MAX HP, not taking into account their DEF.
             damageInflicted = (collider.gameObject.GetComponent<Player>().GetParamMAX_HP())/5;
 
-            Debug.Log("Trap has been triggered.");
+            //Debug.Log("Trap has been triggered.");
 
             trapOnCooldown = true;
 
@@ -53,7 +53,7 @@ public class SpikeTrap : MonoBehaviour {
     }
 
     private IEnumerator CooldownTrap() {
-        Debug.Log("Trap now on cooldown.");
+        //Debug.Log("Trap now on cooldown.");
         yield return new WaitForSeconds(cooldownTime);
         trapOnCooldown = false;
     }
