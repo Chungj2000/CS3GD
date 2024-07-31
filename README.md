@@ -24,7 +24,7 @@ The final product is expected to feature **wave-based shooter** gameplay that ke
   - [x] Implement game over logic for when the player dies.
 - [x] Implement scoring component.
   - [x] Implement score logic for internal tracking and visual components.
-  - [x] Create a database using ['''Backendless'''](https://backendless.com/).
+  - [x] Create a database using [```Backendless```](https://backendless.com/).
   - [x] Implement logic for storing and manipulating persistent data stored in the database.
   - [x] Connect the scoring database to the leaderboard.
 - [x] Design a level for players to interact with.
@@ -47,5 +47,5 @@ The final product is expected to feature **wave-based shooter** gameplay that ke
     - [ ] Create an enemy pool that spawns more types of enemies as the player progresses through waves.
 
 ### Trello Link for Development Log:
-Public archive of tasks associated with the projects development.
+Public archive of tasks associated with the projects development. <br />
 [Trello Board](https://trello.com/invite/b/IPfJdFOo/ATTIe1d90d8095eb3c6b7102d86b9f4be91a7FEDAE96/cs3gd-project) 
