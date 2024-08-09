@@ -1,5 +1,5 @@
 # CS3GD
-Repository for Game Development coursework.
+Repository for Game Development coursework. <br />
 **Please Note:** Leaderboard is defunct due to Backendless trial expiring.
 
 # Purpose
