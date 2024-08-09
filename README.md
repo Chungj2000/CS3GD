@@ -1,5 +1,6 @@
 # CS3GD
 Repository for Game Development coursework.
+**Please Note:** Leaderboard is defunct due to Backendless trial expiring.
 
 # Purpose
 Development of a game built on Unity Engine that meet a set of requirements listed by the stakeholder.
